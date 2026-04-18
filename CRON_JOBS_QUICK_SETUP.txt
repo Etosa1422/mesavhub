@@ -1,0 +1,70 @@
+═══════════════════════════════════════════════════════════════
+  QUICK SETUP GUIDE - Copy & Paste for cPanel
+═══════════════════════════════════════════════════════════════
+
+STEP 1: Find Your PHP Path
+─────────────────────────────
+In cPanel: Advanced → Select PHP Version
+Note your PHP version (e.g., php8.2 or /usr/bin/php82)
+
+Or via SSH: which php
+
+───────────────────────────────────────────────────────────────
+
+STEP 2: Find Your Project Path
+────────────────────────────────
+In cPanel File Manager, navigate to your "backend" folder
+Right-click → Copy Path
+
+Example paths:
+- /home/username/public_html/backend
+- /home/username/domains/yourdomain.com/public_html/backend
+
+───────────────────────────────────────────────────────────────
+
+STEP 3: Add Cron Job in cPanel
+────────────────────────────────
+1. Go to: Advanced → Cron Jobs
+2. Choose: Standard
+3. Settings:
+   - Minute: *
+   - Hour: *
+   - Day: *
+   - Month: *
+   - Weekday: *
+   
+4. Command: (REPLACE THE PATHS BELOW)
+   
+   cd /home/YOUR_USERNAME/path/to/backend && /usr/bin/php artisan schedule:run >> /dev/null 2>&1
+   
+   EXAMPLE:
+   cd /home/boostelix/public_html/backend && /usr/bin/php artisan schedule:run >> /dev/null 2>&1
+
+5. Click: Add New Cron Job
+
+───────────────────────────────────────────────────────────────
+
+STEP 4: Test It Works
+──────────────────────
+Via SSH (if available):
+cd /path/to/backend
+php artisan schedule:list
+
+You should see all 7 cron jobs listed!
+
+───────────────────────────────────────────────────────────────
+
+ALL DONE! ✅
+
+Your cron jobs will now run automatically:
+- Order status checks: Every 5 minutes
+- Refill checks: Every 6 hours
+- Refunds: Every hour
+- Notifications: Every 2 minutes
+- Database cleanup: Daily at 2 AM
+- Auto-close inactive tickets: Daily at 3 AM
+
+Check logs at: storage/logs/cron-*.log
+
+═══════════════════════════════════════════════════════════════
+
