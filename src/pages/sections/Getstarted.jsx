@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowRight, Zap } from "lucide-react";
 
 const GetStarted = () => (
@@ -21,7 +21,7 @@ const GetStarted = () => (
           </h2>
 
           <p className="text-white/80 dark:text-gray-400 text-lg max-w-xl mx-auto mb-10">
-            Join thousands of creators and marketers using Mesavs to grow their social presence and verify accounts across 150+ countries.
+            Join thousands of creators and marketers using Mesavhub to grow their social presence and verify accounts across 150+ countries.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

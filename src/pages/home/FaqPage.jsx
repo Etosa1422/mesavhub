@@ -1,4 +1,4 @@
-ï»¿import { useState } from "react";
+import { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
 
 const categories = [
@@ -11,45 +11,45 @@ const categories = [
 
 const faqs = {
   general: [
-    { q: "What is Mesavs?", a: "Mesavs is an all-in-one SMM (Social Media Marketing) panel and virtual number verification platform. We offer over 3,725 social media services and virtual phone numbers from 150+ countries." },
-    { q: "Who is Mesavs for?", a: "Mesavs serves everyone from individual content creators and influencers to marketing agencies and automated reseller panels. Whether you need 100 followers or 100,000 orders per month, we scale with you." },
+    { q: "What is Mesavhub?", a: "Mesavhub is an all-in-one SMM (Social Media Marketing) panel and virtual number verification platform. We offer over 3,725 social media services and virtual phone numbers from 150+ countries." },
+    { q: "Who is Mesavhub for?", a: "Mesavhub serves everyone from individual content creators and influencers to marketing agencies and automated reseller panels. Whether you need 100 followers or 100,000 orders per month, we scale with you." },
     { q: "Is my account information safe?", a: "Yes. We use industry-standard encryption for passwords and sensitive data. We never sell your personal information to third parties. You can review our full Privacy Policy for details." },
     { q: "How do I get started?", a: "Create a free account, add funds to your balance, and place your first order. The whole process takes under 2 minutes. No credit card required just to sign up." },
-    { q: "Is Mesavs available worldwide?", a: "Yes. Mesavs is available in 150+ countries. Most payment methods work globally, and services are available for all major platforms regardless of your location." },
-    { q: "Do I need technical knowledge to use Mesavs?", a: "Not at all. Our dashboard is designed to be simple for beginners. Just pick a service, enter your link, set a quantity, and place your order. Advanced users can use our API." },
+    { q: "Is Mesavhub available worldwide?", a: "Yes. Mesavhub is available in 150+ countries. Most payment methods work globally, and services are available for all major platforms regardless of your location." },
+    { q: "Do I need technical knowledge to use Mesavhub?", a: "Not at all. Our dashboard is designed to be simple for beginners. Just pick a service, enter your link, set a quantity, and place your order. Advanced users can use our API." },
   ],
   smm: [
     { q: "What platforms do you support?", a: "We support Instagram, TikTok, YouTube, Twitter/X, Facebook, Telegram, Spotify, WhatsApp, LinkedIn, Snapchat, and more. Browse all services in the Services page." },
-    { q: "Are the followers and likes real?", a: "Yes â€” all services on Mesavs use real, active accounts. We do not use bots. Follower retention rates are consistently high because the engagement comes from genuine profiles." },
-    { q: "How fast is delivery?", a: "Most services start within minutes of placing your order. Speed depends on the service type â€” some are instant, while others run gradually to appear natural. Each service listing shows the estimated delivery time." },
+    { q: "Are the followers and likes real?", a: "Yes — all services on Mesavhub use real, active accounts. We do not use bots. Follower retention rates are consistently high because the engagement comes from genuine profiles." },
+    { q: "How fast is delivery?", a: "Most services start within minutes of placing your order. Speed depends on the service type — some are instant, while others run gradually to appear natural. Each service listing shows the estimated delivery time." },
     { q: "Can I place multiple orders at once?", a: "Yes. Use the Mass Order feature in your dashboard to place orders for multiple links simultaneously. This is ideal for agencies managing many accounts." },
     { q: "What happens if my order doesn't complete?", a: "If an order drops or fails to complete, we issue an automatic refill or credit back the remaining amount to your balance. Contact support if an issue persists for more than 24 hours." },
-    { q: "Will platforms ban my account for using Mesavs?", a: "Our services are designed to appear organic and avoid triggering platform spam detection. However, no third-party service can 100% guarantee platform safety. We recommend using gradual services for sensitive accounts." },
+    { q: "Will platforms ban my account for using Mesavhub?", a: "Our services are designed to appear organic and avoid triggering platform spam detection. However, no third-party service can 100% guarantee platform safety. We recommend using gradual services for sensitive accounts." },
     { q: "Can I cancel an order after placing it?", a: "Orders cannot be cancelled once they begin processing. Please review your order details carefully before confirming. Unstarted orders may be eligible for a refund depending on the service." },
   ],
   numbers: [
-    { q: "What is virtual number verification?", a: "Virtual number verification lets you receive SMS OTPs (One-Time Passwords) on a temporary virtual number â€” without needing a real SIM card. It is commonly used for account registrations and verifications." },
+    { q: "What is virtual number verification?", a: "Virtual number verification lets you receive SMS OTPs (One-Time Passwords) on a temporary virtual number — without needing a real SIM card. It is commonly used for account registrations and verifications." },
     { q: "Which apps can I verify with virtual numbers?", a: "You can verify accounts on WhatsApp, Telegram, Instagram, Facebook, Twitter, Gmail, Signal, Viber, TikTok, and dozens more. The service listing shows exactly which apps each number type supports." },
     { q: "How many countries are available?", a: "We offer virtual numbers from 150+ countries including the US, UK, Nigeria, India, Germany, Russia, Brazil, and more. Coverage varies by app and country." },
-    { q: "How quickly does the SMS arrive?", a: "Most SMS messages arrive within 60 seconds. If you do not receive it within 2â€“5 minutes, you can request a resend or use a different number from another country." },
-    { q: "Are virtual numbers reusable?", a: "By default, numbers are single-use and assigned to you temporarily for one verification. Bulk or extended-use number options are available in the service listings â€” check for 'multi-use' labels." },
+    { q: "How quickly does the SMS arrive?", a: "Most SMS messages arrive within 60 seconds. If you do not receive it within 2–5 minutes, you can request a resend or use a different number from another country." },
+    { q: "Are virtual numbers reusable?", a: "By default, numbers are single-use and assigned to you temporarily for one verification. Bulk or extended-use number options are available in the service listings — check for 'multi-use' labels." },
     { q: "Can I use virtual numbers for WhatsApp accounts?", a: "Yes. WhatsApp verification is one of the most popular use cases. Simply select the WhatsApp number service, copy your assigned number, enter it on WhatsApp, and wait for the OTP." },
   ],
   billing: [
-    { q: "How do I add funds to my account?", a: "Go to Add Funds in your dashboard. We support multiple payment methods depending on your region â€” credit/debit cards, cryptocurrency, and various local payment options. Minimum top-up amounts vary by method." },
+    { q: "How do I add funds to my account?", a: "Go to Add Funds in your dashboard. We support multiple payment methods depending on your region — credit/debit cards, cryptocurrency, and various local payment options. Minimum top-up amounts vary by method." },
     { q: "Is there a minimum or maximum balance?", a: "Minimum deposit amounts depend on the payment method selected. There is no maximum balance limit. Your balance never expires." },
-    { q: "Does my balance expire?", a: "No. Your Mesavs balance does not expire as long as your account remains in good standing." },
-    { q: "Can I get a refund to my original payment method?", a: "Refunds are returned to your Mesavs balance, not to the original payment method. We do not process cash refunds. Exceptions may be considered for technical billing errors â€” contact support." },
+    { q: "Does my balance expire?", a: "No. Your Mesavhub balance does not expire as long as your account remains in good standing." },
+    { q: "Can I get a refund to my original payment method?", a: "Refunds are returned to your Mesavhub balance, not to the original payment method. We do not process cash refunds. Exceptions may be considered for technical billing errors — contact support." },
     { q: "What currencies do you support?", a: "The platform operates in USD. Your balance is stored and displayed in USD. Some payments may show a converted amount at checkout depending on your selected payment gateway." },
-    { q: "Is there a transaction fee?", a: "Mesavs does not charge internal transaction fees for balance top-ups. However, your payment processor may apply their own processing fees. These are not controlled by Mesavs." },
+    { q: "Is there a transaction fee?", a: "Mesavhub does not charge internal transaction fees for balance top-ups. However, your payment processor may apply their own processing fees. These are not controlled by Mesavhub." },
   ],
   resellers: [
-    { q: "Can I resell Mesavs services on my own panel?", a: "Yes. Mesavs is fully reseller-friendly. You can connect our services to your own website or panel via the Mesavs API. Set your own prices and keep the difference." },
+    { q: "Can I resell Mesavhub services on my own panel?", a: "Yes. Mesavhub is fully reseller-friendly. You can connect our services to your own website or panel via the Mesavhub API. Set your own prices and keep the difference." },
     { q: "How do I access the API?", a: "Go to the API page in your dashboard to find your API key and documentation. The API is RESTful and compatible with all major panel scripts including SMM-Script, Just Another Panel, and more." },
-    { q: "Is there a reseller discount?", a: "Our pricing is already some of the lowest in the market to support resellers. There are no special 'reseller tiers' â€” all users pay the same competitive prices shown on the Services page." },
+    { q: "Is there a reseller discount?", a: "Our pricing is already some of the lowest in the market to support resellers. There are no special 'reseller tiers' — all users pay the same competitive prices shown on the Services page." },
     { q: "Are there rate limits on the API?", a: "The API allows a reasonable number of requests per minute for normal usage. Excessive automated requests that impact platform stability may be rate-limited. Contact support if you have high-volume needs." },
-    { q: "Can I create a child panel?", a: "Yes. The Child Panel feature lets you create sub-accounts under your main account â€” useful for businesses with multiple clients or team members." },
-    { q: "What happens if a service breaks on my reseller panel?", a: "If a service is disrupted on Mesavs' end, it will affect your reseller panel too. We communicate service outages through platform notifications. Refunds are processed automatically for incomplete orders." },
+    { q: "Can I create a child panel?", a: "Yes. The Child Panel feature lets you create sub-accounts under your main account — useful for businesses with multiple clients or team members." },
+    { q: "What happens if a service breaks on my reseller panel?", a: "If a service is disrupted on Mesavhub' end, it will affect your reseller panel too. We communicate service outages through platform notifications. Refunds are processed automatically for incomplete orders." },
   ],
 };
 
@@ -91,7 +91,7 @@ const FaqPage = () => {
             Frequently Asked Questions
           </h1>
           <p className="text-gray-500 dark:text-gray-400">
-            Browse answers to the most common questions about Mesavs. Can't find what you're looking for? <a href="/contact" className="text-brand-600 dark:text-brand-400 hover:underline">Contact us</a>.
+            Browse answers to the most common questions about Mesavhub. Can't find what you're looking for? <a href="/contact" className="text-brand-600 dark:text-brand-400 hover:underline">Contact us</a>.
           </p>
         </div>
       </section>

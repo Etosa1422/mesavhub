@@ -84,7 +84,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, user }) => {
               <div className="flex items-center gap-2">
                 {/* Green glow dot */}
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_#4ade80]" />
-                <span className="font-bold text-white text-base sm:text-lg tracking-tight">mesavs.com</span>
+                <span className="font-bold text-white text-base sm:text-lg tracking-tight">mesavhub.com</span>
               </div>
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -171,7 +171,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, user }) => {
 
           {/* Footer branding */}
           <div className="p-4 border-t border-white/5">
-            <div className="text-[10px] text-white/20 text-center">© 2026 mesavs.com</div>
+            <div className="text-[10px] text-white/20 text-center">© 2026 mesavhub.com</div>
           </div>
         </div>
       </aside>

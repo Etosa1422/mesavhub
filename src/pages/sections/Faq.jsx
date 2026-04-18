@@ -1,13 +1,13 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 
 const faqData = [
-  { question: "What is Mesavs.com?", answer: "Mesavs.com is a social media marketing panel and virtual number verification platform. You can buy real engagement — followers, likes, views — and get virtual SMS numbers for any country to verify accounts on WhatsApp, Instagram, Telegram, TikTok, and more." },
+  { question: "What is Mesavhub.com?", answer: "Mesavhub.com is a social media marketing panel and virtual number verification platform. You can buy real engagement � followers, likes, views � and get virtual SMS numbers for any country to verify accounts on WhatsApp, Instagram, Telegram, TikTok, and more." },
   { question: "How does the SMM panel work?", answer: "You select a service (e.g. Instagram followers), enter the target URL or username, choose a quantity, and place your order. Delivery starts automatically through our network of providers." },
   { question: "What is number verification?", answer: "Number verification lets you receive SMS codes on a virtual phone number from any country. Use it to register or verify accounts on social platforms without using your personal number." },
   { question: "Which countries are supported for number verification?", answer: "We support virtual numbers from 150+ countries including the US, UK, Nigeria, India, Ghana, Kenya, Canada, and many more. Almost every major country is supported." },
   { question: "How do I earn money as a reseller?", answer: "Create a child panel under your own brand, set your own pricing, and resell our services. Keep 100% of your profit margin. Many resellers earn consistent daily income this way." },
-  { question: "What is a child panel?", answer: "A child panel is a white-label version of Mesavs. It runs under your own name and pricing but uses our backend infrastructure for order fulfillment — including both SMM and number verification services." },
+  { question: "What is a child panel?", answer: "A child panel is a white-label version of Mesavhub. It runs under your own name and pricing but uses our backend infrastructure for order fulfillment � including both SMM and number verification services." },
 ];
 
 const FaqSection = () => {

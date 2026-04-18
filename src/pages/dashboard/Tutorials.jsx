@@ -7,14 +7,14 @@ function Tutorials() {
   const tutorials = [
     {
       id: 1,
-      title: "How to use Mesavs",
+      title: "How to use Mesavhub",
       description: "A comprehensive guide to navigating and utilizing all features of our platform.",
       youtubeId: null,
       thumbnail: "/placeholder.svg?height=300&width=500",
     },
     {
       id: 2,
-      title: "How to fund your Mesavs account",
+      title: "How to fund your Mesavhub account",
       description: "Learn the various methods to securely add funds to your wallet.",
       youtubeId: null,
       thumbnail: "/placeholder.svg?height=300&width=500",
@@ -56,7 +56,7 @@ function Tutorials() {
         <div className="text-center space-y-2 mb-8">
           <h1 className="text-3xl lg:text-4xl font-bold text-text-DEFAULT">All Tutorials</h1>
           <p className="text-base lg:text-lg text-text-medium max-w-2xl mx-auto">
-            Need help using mesavs? Our tutorials cover everything from funding your wallet to placing your first
+            Need help using mesavhub? Our tutorials cover everything from funding your wallet to placing your first
             order. Watch and get started in minutes.
           </p>
         </div>

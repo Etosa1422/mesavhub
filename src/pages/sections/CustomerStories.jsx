@@ -1,15 +1,15 @@
-ï»¿import Slider from "react-slick";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Star } from "lucide-react";
 
 const testimonials = [
-  { name: "Amara T.", role: "Influencer â€“ Lagos", review: "I grew my Instagram from 800 to over 12,000 followers in two weeks through Mesavs. The orders were fast and the quality was solid. Absolutely worth it.", stars: 5 },
-  { name: "Kevin M.", role: "Content Creator â€“ Kenya", review: "Used the WhatsApp number verification multiple times. Works instantly every single time. No issues at all, and very affordable for bulk verifications.", stars: 5 },
-  { name: "Sandra O.", role: "SMM Reseller â€“ UK", review: "I run my own panel using their child panel feature. It has been the best business decision I made this year. My clients love the speed and reliability.", stars: 5 },
-  { name: "Emeka J.", role: "Entrepreneur â€“ Nigeria", review: "The TikTok views service is genuinely legit. My videos started trending after boosting them here. The panel is easy to use and prices are great.", stars: 5 },
-  { name: "Priya K.", role: "Digital Marketer â€“ India", review: "Mesavs is the only SMM panel I recommend to my clients now. From Telegram subscribers to YouTube Watch Hours, everything works perfectly.", stars: 5 },
-  { name: "Chris D.", role: "Agency Owner â€“ Ghana", review: "The API integration saved me so much time. I connected Mesavs to my custom dashboard and orders process automatically. Top-tier service.", stars: 5 },
+  { name: "Amara T.", role: "Influencer – Lagos", review: "I grew my Instagram from 800 to over 12,000 followers in two weeks through Mesavhub. The orders were fast and the quality was solid. Absolutely worth it.", stars: 5 },
+  { name: "Kevin M.", role: "Content Creator – Kenya", review: "Used the WhatsApp number verification multiple times. Works instantly every single time. No issues at all, and very affordable for bulk verifications.", stars: 5 },
+  { name: "Sandra O.", role: "SMM Reseller – UK", review: "I run my own panel using their child panel feature. It has been the best business decision I made this year. My clients love the speed and reliability.", stars: 5 },
+  { name: "Emeka J.", role: "Entrepreneur – Nigeria", review: "The TikTok views service is genuinely legit. My videos started trending after boosting them here. The panel is easy to use and prices are great.", stars: 5 },
+  { name: "Priya K.", role: "Digital Marketer – India", review: "Mesavhub is the only SMM panel I recommend to my clients now. From Telegram subscribers to YouTube Watch Hours, everything works perfectly.", stars: 5 },
+  { name: "Chris D.", role: "Agency Owner – Ghana", review: "The API integration saved me so much time. I connected Mesavhub to my custom dashboard and orders process automatically. Top-tier service.", stars: 5 },
 ];
 
 const settings = {

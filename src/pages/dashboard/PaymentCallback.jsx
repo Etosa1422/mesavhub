@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useEffect, useState } from "react"
 import { useSearchParams, useNavigate } from "react-router-dom"
@@ -21,7 +21,7 @@ const PaymentCallback = () => {
         const txRef = searchParams.get('tx_ref')
         const statusParam = searchParams.get('status')
 
-        console.log('🔍 Payment Callback - URL Parameters:', {
+        console.log('?? Payment Callback - URL Parameters:', {
           transactionId,
           txRef, 
           statusParam,
@@ -37,14 +37,14 @@ const PaymentCallback = () => {
         // Use either transaction_id or tx_ref
         const reference = transactionId || txRef
 
-        console.log('🔄 Verifying payment with reference:', reference)
+        console.log('?? Verifying payment with reference:', reference)
 
         const response = await verifyPayment({
           transaction_id: reference,
           status: statusParam || 'successful' // Default to successful if no status
         })
 
-        console.log('✅ Verification response:', response)
+        console.log('? Verification response:', response)
 
         if (response.success) {
           setStatus('success')
@@ -58,7 +58,7 @@ const PaymentCallback = () => {
           throw new Error(response.message || 'Payment verification failed')
         }
       } catch (error) {
-        console.error('❌ Payment verification error:', error)
+        console.error('? Payment verification error:', error)
         setStatus('error')
         const errorMessage = error.response?.data?.message || error.message || 'Payment verification failed'
         setMessage(errorMessage)
@@ -126,7 +126,7 @@ const PaymentCallback = () => {
                 Try Again
               </button>
               <button
-                onClick={() => window.open('mailto:support@mesavs.com', '_blank')}
+                onClick={() => window.open('mailto:support@mesavhub.com', '_blank')}
                 className="w-full py-3 px-4 rounded-full border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50"
               >
                 Contact Support

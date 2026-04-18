@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Eye, EyeOff, User, Lock, ArrowRight } from "lucide-react";
@@ -50,7 +50,7 @@ const LoginSection = () => {
             </div>
             <h2 className="text-3xl font-black text-white mb-3">Welcome back</h2>
             <p className="text-brand-100 dark:text-gray-400 text-sm leading-relaxed mb-8">
-              Sign in to manage your orders, track deliveries, and access your full Mesavs dashboard.
+              Sign in to manage your orders, track deliveries, and access your full Mesavhub dashboard.
             </p>
             <div className="space-y-3">
               {["Instant order tracking", "All-country SMS verifications", "24/7 support access"].map((item) => (

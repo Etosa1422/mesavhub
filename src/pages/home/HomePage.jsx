@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LoginSection from "./LoginSection";
 import StatsDashboard from "../sections/Statistics";
 import Why from "../sections/why";
@@ -39,7 +39,7 @@ const HomePage = () => {
           </h1>
 
           <p className="text-gray-600 dark:text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Mesavs is the most complete SMM panel for real followers, likes, views plus virtual SMS number verification for every country and every platform.
+            Mesavhub is the most complete SMM panel for real followers, likes, views plus virtual SMS number verification for every country and every platform.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-14">

@@ -74,7 +74,7 @@ const Navbar = () => {
             <Zap className="w-4 h-4 text-white" />
           </div>
           <span className="text-xl font-black text-gray-900 dark:text-white tracking-tight">
-            Mesa<span className="text-brand-500 dark:text-brand-400">vs</span>
+            Mesav<span className="text-brand-500 dark:text-brand-400">hub</span>
           </span>
         </Link>
 

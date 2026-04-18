@@ -1,10 +1,10 @@
-﻿import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem("mesavs-theme");
+    const saved = localStorage.getItem("mesavhub-theme");
     return saved === "dark"; // default: light
   });
 
@@ -15,7 +15,7 @@ export const ThemeProvider = ({ children }) => {
     } else {
       html.classList.remove("dark");
     }
-    localStorage.setItem("mesavs-theme", isDark ? "dark" : "light");
+    localStorage.setItem("mesavhub-theme", isDark ? "dark" : "light");
   }, [isDark]);
 
   return (

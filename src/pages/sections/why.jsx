@@ -1,20 +1,20 @@
-ï»¿const cards = [
+const cards = [
   { num: "01", title: "Lightning Fast Delivery", desc: "Orders start processing within seconds of placement. We run one of the fastest fulfillment networks on the market." },
-  { num: "02", title: "All-Country Verification", desc: "Get virtual SMS numbers from 150+ countries instantly. Verify any platform â€” WhatsApp, Telegram, Instagram and more." },
+  { num: "02", title: "All-Country Verification", desc: "Get virtual SMS numbers from 150+ countries instantly. Verify any platform — WhatsApp, Telegram, Instagram and more." },
   { num: "03", title: "Reseller-Ready API", desc: "Full API access lets you automate orders, build your own panel, and scale your reselling business without limits." },
-  { num: "04", title: "Transparent Pricing", desc: "No hidden fees. No surprises. The price you see is the price you pay â€” with bulk discounts available for power users." },
+  { num: "04", title: "Transparent Pricing", desc: "No hidden fees. No surprises. The price you see is the price you pay — with bulk discounts available for power users." },
 ];
 
 const Why = () => (
   <section className="bg-gray-50 dark:bg-[#0f0f1a] py-24 px-6">
     <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div>
-        <span className="text-brand-600 dark:text-brand-400 text-sm font-semibold uppercase tracking-widest block mb-4">Why Mesavs</span>
+        <span className="text-brand-600 dark:text-brand-400 text-sm font-semibold uppercase tracking-widest block mb-4">Why Mesavhub</span>
         <h2 className="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white leading-tight mb-6">
           Everything you need.<br />Nothing you don&apos;t.
         </h2>
         <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed mb-4">
-          We built Mesavs around one idea: give creators and marketers a reliable, affordable tool that just works â€” every single time.
+          We built Mesavhub around one idea: give creators and marketers a reliable, affordable tool that just works — every single time.
         </p>
         <p className="text-gray-500 dark:text-gray-400 text-base leading-relaxed">
           From first-time buyers to high-volume resellers, our platform scales with you. No bloat. No guesswork.

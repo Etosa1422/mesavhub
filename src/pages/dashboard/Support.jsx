@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect } from "react"
 import { ChevronDown, X, Send, MessageCircle, Clock, CheckCircle, AlertCircle, Eye } from "lucide-react"
@@ -32,13 +32,13 @@ const Support = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const categories = [
-    { id: "order", label: "Order", icon: "📦" },
-    { id: "payment", label: "Payment", icon: "💳" },
-    { id: "child-panel", label: "Child Panel", icon: "👶" },
-    { id: "api", label: "API", icon: "🔌" },
-    { id: "bug", label: "Bug", icon: "⚠️" },
-    { id: "request", label: "Request", icon: "🙋" },
-    { id: "other", label: "Other", icon: "💬" },
+    { id: "order", label: "Order", icon: "??" },
+    { id: "payment", label: "Payment", icon: "??" },
+    { id: "child-panel", label: "Child Panel", icon: "??" },
+    { id: "api", label: "API", icon: "??" },
+    { id: "bug", label: "Bug", icon: "??" },
+    { id: "request", label: "Request", icon: "??" },
+    { id: "other", label: "Other", icon: "??" },
   ]
 
   const subjectOptions = {
@@ -64,13 +64,13 @@ const Support = () => {
   const faqItems = [
     {
       id: "why-choose",
-      question: "Why choose Mesavs?",
+      question: "Why choose Mesavhub?",
       answer:
-        "Mesavs makes social media growth simple and affordable. We offer a wide range of services, fast delivery, real-time order tracking, and friendly support. Whether you're a beginner or a reseller, we've got what you need to succeed.",
+        "Mesavhub makes social media growth simple and affordable. We offer a wide range of services, fast delivery, real-time order tracking, and friendly support. Whether you're a beginner or a reseller, we've got what you need to succeed.",
     },
     {
       id: "beginner-friendly",
-      question: "Is Mesavs beginner friendly?",
+      question: "Is Mesavhub beginner friendly?",
       answer:
         "Absolutely! Our platform is designed with beginners in mind. We provide easy-to-use interfaces, detailed guides, step-by-step tutorials, and 24/7 support to help you get started with social media marketing.",
     },
@@ -82,13 +82,13 @@ const Support = () => {
     },
     {
       id: "reseller-program",
-      question: "Can I resell Mesavs services?",
+      question: "Can I resell Mesavhub services?",
       answer:
         "Yes! We offer competitive reseller programs with API access, white-label solutions, and bulk pricing. Contact our support team to learn more about becoming a reseller and earning profits.",
     },
     {
       id: "support-types",
-      question: "What kind of support does Mesavs offer?",
+      question: "What kind of support does Mesavhub offer?",
       answer:
         "We provide comprehensive support including live chat, ticket system, email support, and detailed documentation. Our team is available 24/7 to help with orders, payments, technical issues, and general inquiries.",
     },
@@ -110,7 +110,7 @@ const Support = () => {
    const fetchTickets = async () => {
   try {
     const tickets = await fetchUserTickets(); // already returns the array
-    setTickets(tickets); // ✅ set directly
+    setTickets(tickets); // ? set directly
   } catch (err) {
     toast.error("Failed to load ticket history");
   }
@@ -396,7 +396,7 @@ const Support = () => {
                 </p>
               </div>
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-2xl">💬</span>
+                <span className="text-2xl">??</span>
               </div>
             </div>
 
@@ -622,7 +622,7 @@ const Support = () => {
                       </p>
                     </div>
                     <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl">💬</span>
+                      <span className="text-2xl">??</span>
                     </div>
                   </div>
                 </div>
@@ -721,7 +721,7 @@ const Support = () => {
             className="text-center py-6 rounded-2xl text-white"
             style={{ background: `linear-gradient(135deg, ${CSS_COLORS.primary}, ${CSS_COLORS.primaryDark})` }}
           >
-            © Copyright 2025 All Rights Reserved.
+            � Copyright 2025 All Rights Reserved.
           </div>
         </div>
       </div>

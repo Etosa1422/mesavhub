@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 
 const bullets = [
@@ -17,7 +17,7 @@ const RiseSocial = () => (
           Turn services into<br />a business.
         </h2>
         <p className="text-gray-500 dark:text-gray-400 text-base leading-relaxed mb-8">
-          Launch your own SMM and verification panel in minutes. Mesavs handles all fulfillment — you just focus on sales.
+          Launch your own SMM and verification panel in minutes. Mesavhub handles all fulfillment � you just focus on sales.
         </p>
         <ul className="space-y-3 mb-10">
           {bullets.map((b) => (

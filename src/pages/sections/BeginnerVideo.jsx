@@ -9,7 +9,7 @@ const BeginnerVideo = () => {
         <div className="flex-1">
           <h5 className="text-lg font-bold text-gray-800">
             BEGINNER'S VIDEO GUIDE ON HOW TO USE{' '}
-            <Link to ="/signup" className="underline text-gray-800 font-bold"> Mesavs.com</Link>
+            <Link to ="/signup" className="underline text-gray-800 font-bold"> Mesavhub.com</Link>
           </h5>
         </div>
         <div className="w-full md:w-[480px] h-[270px]">

@@ -90,7 +90,7 @@ const SignUpPage = () => {
             <div className="w-12 h-12 rounded-xl bg-white/20 border border-white/30 flex items-center justify-center mb-6">
               <UserPlus className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-3xl font-black text-white mb-3">Join Mesavs today</h2>
+            <h2 className="text-3xl font-black text-white mb-3">Join Mesavhub today</h2>
             <p className="text-brand-100 dark:text-gray-400 text-sm leading-relaxed mb-8">
               Create your free account and start ordering social media services instantly from anywhere in the world.
             </p>

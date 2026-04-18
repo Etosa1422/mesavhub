@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState } from "react"
 import React, { useEffect } from "react";
@@ -24,11 +24,11 @@ import {
 } from "../../services/userService"
 
 const socialPlatforms = [
-  { name: "Facebook", icon: "📘", color: "bg-green-600" },
-  { name: "Twitter", icon: "🐦", color: "bg-sky-500" },
-  { name: "Instagram", icon: "📷", color: "bg-pink-500" },
-  { name: "WhatsApp", icon: "💬", color: "bg-green-500" },
-  { name: "Telegram", icon: "✈️", color: "bg-green-500" },
+  { name: "Facebook", icon: "??", color: "bg-green-600" },
+  { name: "Twitter", icon: "??", color: "bg-sky-500" },
+  { name: "Instagram", icon: "??", color: "bg-pink-500" },
+  { name: "WhatsApp", icon: "??", color: "bg-green-500" },
+  { name: "Telegram", icon: "??", color: "bg-green-500" },
 ]
 
 const Affiliate = () => {
@@ -103,7 +103,7 @@ const Affiliate = () => {
   }
 
   const shareToSocial = (platform) => {
-    const message = `Join Mesavs and get amazing social media services! Use my referral link: ${referralLink}`
+    const message = `Join Mesavhub and get amazing social media services! Use my referral link: ${referralLink}`
     const encodedMessage = encodeURIComponent(message)
 
     const urls = {
@@ -172,7 +172,7 @@ const Affiliate = () => {
       const headers = ['Date', 'Amount', 'Status', 'Transaction ID']
       const rows = payouts.map(payout => [
         new Date(payout.created_at).toLocaleDateString(),
-        `₦${(Number(payout.amount) || 0).toLocaleString()}`,
+        `?${(Number(payout.amount) || 0).toLocaleString()}`,
         payout.status,
         payout.transaction_id || 'N/A'
       ])
@@ -208,13 +208,13 @@ const Affiliate = () => {
           <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-6 rounded-lg shadow">
             <p className="text-lg leading-relaxed">
               <span className="font-semibold">
-                Tell People About Mesavs And Earn By Simply Sharing Your Unique Affiliate Link.
+                Tell People About Mesavhub And Earn By Simply Sharing Your Unique Affiliate Link.
               </span>
               <br />
               You Will Get A <span className="font-bold text-yellow-300">{commissionRate}% LIFETIME</span> Commission On
               Every Deposit Made By People That Sign Up With Your Link.
               <br />
-              <span className="font-semibold">Happy Earning 🙌🤍</span>
+              <span className="font-semibold">Happy Earning ????</span>
             </p>
           </div>
         </div>
@@ -284,7 +284,7 @@ const Affiliate = () => {
                   <h2 className="text-lg font-semibold text-gray-700">Minimum Payout</h2>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-green-600 mb-2">₦{minimumPayout.toLocaleString()}</div>
+                  <div className="text-3xl font-bold text-green-600 mb-2">?{minimumPayout.toLocaleString()}</div>
                   <p className="text-sm text-gray-600">Minimum amount for withdrawal</p>
                   <div className="mt-3">
                     <span className="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
@@ -363,12 +363,12 @@ const Affiliate = () => {
                 </div>
 
                 <div className="text-center p-4 bg-emerald-50 rounded-lg">
-                  <div className="text-2xl font-bold text-emerald-600">₦{(Number(stats?.total_earnings) || 0).toLocaleString()}</div>
+                  <div className="text-2xl font-bold text-emerald-600">?{(Number(stats?.total_earnings) || 0).toLocaleString()}</div>
                   <div className="text-sm text-gray-600">Total Earnings</div>
                 </div>
 
                 <div className="text-center p-4 bg-green-50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">₦{(Number(stats?.available_earnings) || 0).toLocaleString()}</div>
+                  <div className="text-2xl font-bold text-green-600">?{(Number(stats?.available_earnings) || 0).toLocaleString()}</div>
                   <div className="text-sm text-gray-600">Available Earnings</div>
                 </div>
               </div>
@@ -416,7 +416,7 @@ const Affiliate = () => {
                         payouts.map((payout, index) => (
                           <tr key={index} className="border-b hover:bg-gray-50">
                             <td className="py-3 px-4">{new Date(payout.created_at).toLocaleDateString()}</td>
-                            <td className="py-3 px-4 font-semibold text-green-600">₦{(Number(payout.amount) || 0).toLocaleString()}</td>
+                            <td className="py-3 px-4 font-semibold text-green-600">?{(Number(payout.amount) || 0).toLocaleString()}</td>
                             <td className="py-3 px-4">
                               <span
                                 className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
@@ -465,19 +465,19 @@ const Affiliate = () => {
                   <h4 className="font-semibold text-gray-800">Best Practices:</h4>
                   <ul className="space-y-2 text-sm text-gray-600">
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-green-500 mt-1">?</span>
                       Share your link on social media platforms regularly
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-green-500 mt-1">?</span>
                       Create engaging content about social media growth
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-green-500 mt-1">?</span>
                       Target users interested in social media marketing
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-green-500 mt-1">?</span>
                       Be transparent about using referral links
                     </li>
                   </ul>
@@ -491,7 +491,7 @@ const Affiliate = () => {
                     </div>
                     <div className="flex justify-between items-center p-3 bg-green-50 rounded">
                       <span className="text-sm font-medium">Minimum Payout</span>
-                      <span className="font-bold text-green-600">₦{minimumPayout.toLocaleString()}</span>
+                      <span className="font-bold text-green-600">?{minimumPayout.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-green-50 rounded">
                       <span className="text-sm font-medium">Payment Schedule</span>

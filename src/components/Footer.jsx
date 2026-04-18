@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Zap, Twitter, Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
@@ -43,7 +43,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-gray-200 dark:border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-gray-400 dark:text-gray-500 text-xs">&copy; {currentYear} Mesavs. All rights reserved.</p>
+          <p className="text-gray-400 dark:text-gray-500 text-xs">&copy; {currentYear} Mesavhub. All rights reserved.</p>
           <p className="text-gray-400 dark:text-gray-600 text-xs">Built for creators, marketers &amp; resellers.</p>
         </div>
       </div>

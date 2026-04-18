@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { TrendingUp } from "lucide-react";
 
 const BoostSection = () => (
@@ -16,7 +16,7 @@ const BoostSection = () => (
               <span className="text-brand-600 dark:text-brand-400">Fast.</span>
             </h2>
             <p className="text-gray-500 dark:text-gray-400 text-base leading-relaxed mb-8">
-              Whether you need 100 followers today or 100,000 this month — Mesavs delivers immediately. No waiting, no uncertainty.
+              Whether you need 100 followers today or 100,000 this month � Mesavhub delivers immediately. No waiting, no uncertainty.
             </p>
             <Link
               to="/signup"

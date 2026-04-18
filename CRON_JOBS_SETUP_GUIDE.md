@@ -1,6 +1,6 @@
 # 🚀 Complete Cron Jobs Setup Guide for SMM Website
 
-This guide will help you set up all cron jobs for your MesavsSMM website on cPanel, Plesk, or any other hosting.
+This guide will help you set up all cron jobs for your MesavhubhubSMM website on cPanel, Plesk, or any other hosting.
 
 ---
 

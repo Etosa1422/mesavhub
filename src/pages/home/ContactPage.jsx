@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Mail, MessageSquare, Clock, Send, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -40,14 +40,14 @@ const ContactPage = () => {
                 <Mail className="w-5 h-5 text-brand-600 dark:text-brand-400" />
               </div>
               <h3 className="text-gray-900 dark:text-white font-bold text-sm mb-1">Email Support</h3>
-              <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">support@mesavs.com</p>
+              <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">support@mesavhub.com</p>
             </div>
             <div className="bg-gray-50 dark:bg-[#0f0f1a] border border-gray-100 dark:border-white/5 rounded-2xl p-6">
               <div className="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-950/50 flex items-center justify-center mb-4">
                 <Clock className="w-5 h-5 text-brand-600 dark:text-brand-400" />
               </div>
               <h3 className="text-gray-900 dark:text-white font-bold text-sm mb-1">Response Time</h3>
-              <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">We typically respond within 2–6 hours. For urgent order issues, submit a ticket directly from your dashboard.</p>
+              <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">We typically respond within 2�6 hours. For urgent order issues, submit a ticket directly from your dashboard.</p>
             </div>
             <div className="bg-gray-50 dark:bg-[#0f0f1a] border border-gray-100 dark:border-white/5 rounded-2xl p-6">
               <div className="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-950/50 flex items-center justify-center mb-4">
@@ -59,7 +59,7 @@ const ContactPage = () => {
             </div>
             <div className="bg-brand-50 dark:bg-brand-950/20 border border-brand-100 dark:border-brand-900/30 rounded-2xl p-5">
               <p className="text-xs text-brand-700 dark:text-brand-400 leading-relaxed">
-                <strong>Before contacting us</strong>, check our <Link to="/faq" className="underline">FAQ page</Link> — your question may already be answered there.
+                <strong>Before contacting us</strong>, check our <Link to="/faq" className="underline">FAQ page</Link> � your question may already be answered there.
               </p>
             </div>
           </div>
