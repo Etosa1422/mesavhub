@@ -1,58 +1,64 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { getSiteSettings } from './services/adminService';
 import Navbar from './components/NavBar';
 import Footer from './components/Footer';
-import HomePage from './pages/home/HomePage';
-import SignUpPage from './pages/home/SignUpPage';
-import ServicesPage from './pages/home/ServicesPage';
-import AboutPage from './pages/home/AboutPage';
-import TermsPage from './pages/home/TermsPage';
-import FaqPage from './pages/home/FaqPage';
-import ContactPage from './pages/home/ContactPage';
-import DashboardLayout from "./pages/dashboard/DashboardLayout";
 import ProtectedRoute from './routes/ProtectedRoute';
 import AdminRoutes from './routes/AdminRoutes';
-import NewOrder from './pages/dashboard/NewOrder';
-import Updates from './pages/dashboard/Updates';
-import GeneralNotification from './pages/dashboard/GeneralNotification';
-import AddFunds from './pages/dashboard/AddFunds';
-import OrderHistory from './pages/dashboard/OrderHistory';
-import MassOrder from './pages/dashboard/MassOrder';
-import ChildPanel from './pages/dashboard/ChildPanel';
-import Affiliate from './pages/dashboard/Affiliate';
-import Services from './pages/dashboard/Services';
-import Support from './pages/dashboard/Support';
-import AdminLayout from './pages/admin/AdminLayout';
-import AdminLogin from './pages/admin/AdminLogin';
-import Dashboard from './pages/admin/Dashboard';
-import ManageApiProviders from './pages/admin/ManageApiProviders';
-import ManageUsers from './pages/admin/ManageUsers';
-import AdminUserView from "./pages/admin/AdminUserView";
-import AdminUserEdit from "./pages/admin/AdminUserEdit";
-import AddSubtractBalance from "./pages/admin/AddSubtractBalance";
-import ManageUserOrders from "./pages/admin/ManageUserOrders";
-import ManageUserTransactions from "./pages/admin/ManageUserTransactions";
-import ManageTransactions from "./pages/admin/ManageTransactions";
-import SendMailAll from "./pages/admin/SendMailAll";
-import SendEmailForm from './pages/admin/SendEmailForm';
-import API from './pages/dashboard/Api';
-import Tutorials from './pages/dashboard/Tutorials';
-import Account from './pages/dashboard/Account';
-import TransactionCallback from './pages/dashboard/TransactionCallback';
-import AddServicesPage from './pages/admin/AddServicesPage';
-import ShowServices from './pages/admin/ShowServices';
-import AdminTickets from './pages/admin/Tickets';
-import AdminUpdates from './pages/admin/Updates';
-import ShowOrders from "./pages/admin/ShowOrders";
-import AdminSettings from './pages/admin/AdminSettings';
-import PaymentCallback from './pages/dashboard/PaymentCallback';
-import BulkPriceIncrease from './pages/admin/BulkPriceIncrease';
-import VirtualNumberPricing from './pages/admin/VirtualNumberPricing';
-import VirtualNumberSettings from './pages/admin/VirtualNumberSettings';
-import VirtualNumbers from './pages/dashboard/VirtualNumbers';
-import BoostFollowers from './pages/dashboard/BoostFollowers';
+
+// Public pages
+const HomePage = lazy(() => import('./pages/home/HomePage'));
+const SignUpPage = lazy(() => import('./pages/home/SignUpPage'));
+const ServicesPage = lazy(() => import('./pages/home/ServicesPage'));
+const AboutPage = lazy(() => import('./pages/home/AboutPage'));
+const TermsPage = lazy(() => import('./pages/home/TermsPage'));
+const FaqPage = lazy(() => import('./pages/home/FaqPage'));
+const ContactPage = lazy(() => import('./pages/home/ContactPage'));
+
+// Dashboard pages
+const DashboardLayout = lazy(() => import('./pages/dashboard/DashboardLayout'));
+const NewOrder = lazy(() => import('./pages/dashboard/NewOrder'));
+const Updates = lazy(() => import('./pages/dashboard/Updates'));
+const GeneralNotification = lazy(() => import('./pages/dashboard/GeneralNotification'));
+const AddFunds = lazy(() => import('./pages/dashboard/AddFunds'));
+const OrderHistory = lazy(() => import('./pages/dashboard/OrderHistory'));
+const MassOrder = lazy(() => import('./pages/dashboard/MassOrder'));
+const ChildPanel = lazy(() => import('./pages/dashboard/ChildPanel'));
+const Affiliate = lazy(() => import('./pages/dashboard/Affiliate'));
+const Services = lazy(() => import('./pages/dashboard/Services'));
+const Support = lazy(() => import('./pages/dashboard/Support'));
+const API = lazy(() => import('./pages/dashboard/Api'));
+const Tutorials = lazy(() => import('./pages/dashboard/Tutorials'));
+const Account = lazy(() => import('./pages/dashboard/Account'));
+const TransactionCallback = lazy(() => import('./pages/dashboard/TransactionCallback'));
+const PaymentCallback = lazy(() => import('./pages/dashboard/PaymentCallback'));
+const VirtualNumbers = lazy(() => import('./pages/dashboard/VirtualNumbers'));
+const BoostFollowers = lazy(() => import('./pages/dashboard/BoostFollowers'));
+
+// Admin pages
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
+const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
+const Dashboard = lazy(() => import('./pages/admin/Dashboard'));
+const ManageApiProviders = lazy(() => import('./pages/admin/ManageApiProviders'));
+const ManageUsers = lazy(() => import('./pages/admin/ManageUsers'));
+const AdminUserView = lazy(() => import('./pages/admin/AdminUserView'));
+const AdminUserEdit = lazy(() => import('./pages/admin/AdminUserEdit'));
+const AddSubtractBalance = lazy(() => import('./pages/admin/AddSubtractBalance'));
+const ManageUserOrders = lazy(() => import('./pages/admin/ManageUserOrders'));
+const ManageUserTransactions = lazy(() => import('./pages/admin/ManageUserTransactions'));
+const ManageTransactions = lazy(() => import('./pages/admin/ManageTransactions'));
+const SendMailAll = lazy(() => import('./pages/admin/SendMailAll'));
+const SendEmailForm = lazy(() => import('./pages/admin/SendEmailForm'));
+const AddServicesPage = lazy(() => import('./pages/admin/AddServicesPage'));
+const ShowServices = lazy(() => import('./pages/admin/ShowServices'));
+const AdminTickets = lazy(() => import('./pages/admin/Tickets'));
+const AdminUpdates = lazy(() => import('./pages/admin/Updates'));
+const ShowOrders = lazy(() => import('./pages/admin/ShowOrders'));
+const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
+const BulkPriceIncrease = lazy(() => import('./pages/admin/BulkPriceIncrease'));
+const VirtualNumberPricing = lazy(() => import('./pages/admin/VirtualNumberPricing'));
+const VirtualNumberSettings = lazy(() => import('./pages/admin/VirtualNumberSettings'));
 
 
 
@@ -85,6 +91,7 @@ const App = () => {
     <Router> 
       <Toaster position="top-right" reverseOrder={false} />
       <Layout>
+        <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignUpPage />} />
@@ -152,6 +159,7 @@ const App = () => {
           </Route>
         
         </Routes>
+        </Suspense>
       </Layout>
     </Router>
   );

@@ -1,7 +1,7 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { Users, DollarSign, ShoppingBag, TrendingUp, Calendar, UserPlus, Clock, BarChart3 } from 'lucide-react';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import {AdminDashboard} from "../../services/adminService"
 
 const Dashboard = () => {

@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { IoMenu, IoClose } from "react-icons/io5";
+import { Menu, X } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Zap, Sun, Moon } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
@@ -123,7 +123,7 @@ const Navbar = () => {
             className="text-gray-700 dark:text-white text-2xl focus:outline-none"
             aria-label="Toggle mobile menu"
           >
-            {isOpen ? <IoClose /> : <IoMenu />}
+            {isOpen ? <X /> : <Menu />}
           </button>
         </div>
       </nav>
