@@ -4,6 +4,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { getSiteSettings } from './services/adminService';
 import Navbar from './components/NavBar';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 import ProtectedRoute from './routes/ProtectedRoute';
 import AdminRoutes from './routes/AdminRoutes';
 
@@ -184,6 +185,7 @@ const App = () => {
         </Routes>
       </Layout>
       </Suspense>
+      <WhatsAppButton />
     </Router>
   );
 };
