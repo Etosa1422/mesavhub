@@ -50,10 +50,10 @@ const HomePage = () => {
               Start Free Today
             </Link>
             <Link
-              to="/services"
+              to="/login"
               className="bg-white hover:bg-gray-50 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white px-8 py-4 rounded-full font-bold text-base transition-all duration-200 shadow-sm"
             >
-              View All Services
+              Login
             </Link>
           </div>
 

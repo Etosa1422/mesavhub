@@ -16,6 +16,7 @@ const AboutPage = lazy(() => import('./pages/home/AboutPage'));
 const TermsPage = lazy(() => import('./pages/home/TermsPage'));
 const FaqPage = lazy(() => import('./pages/home/FaqPage'));
 const ContactPage = lazy(() => import('./pages/home/ContactPage'));
+const LoginPage = lazy(() => import('./pages/home/LoginPage'));
 
 // Dashboard pages
 const DashboardLayout = lazy(() => import('./pages/dashboard/DashboardLayout'));
@@ -67,7 +68,7 @@ const VirtualNumberSettings = lazy(() => import('./pages/admin/VirtualNumberSett
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const showLayout = ["/", "/signup", "/services", "/about", "/terms", "/faq", "/contact"].includes(location.pathname);
+const showLayout = ["/", "/login", "/signup", "/services", "/about", "/terms", "/faq", "/contact"].includes(location.pathname);
 
   useEffect(() => {
     const loader = document.getElementById('root-loader');
@@ -118,6 +119,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
            <Route path="/services" element={<ServicesPage />} />
           <Route path="/about" element={<AboutPage />} />

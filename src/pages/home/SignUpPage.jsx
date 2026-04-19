@@ -116,7 +116,7 @@ const SignUpPage = () => {
             <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-1">Create account</h3>
             <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">
               Already have an account?{" "}
-              <Link to="/" className="text-brand-600 dark:text-brand-400 font-semibold hover:underline">Sign in</Link>
+              <Link to="/login" className="text-brand-600 dark:text-brand-400 font-semibold hover:underline">Sign in</Link>
             </p>
 
             <form onSubmit={registerUser} className="space-y-4">
