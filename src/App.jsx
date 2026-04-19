@@ -7,8 +7,8 @@ import Footer from './components/Footer';
 import ProtectedRoute from './routes/ProtectedRoute';
 import AdminRoutes from './routes/AdminRoutes';
 
-// Public pages
-const HomePage = lazy(() => import('./pages/home/HomePage'));
+// Public pages — HomePage is eager so it renders on first paint with the navbar
+import HomePage from './pages/home/HomePage';
 const SignUpPage = lazy(() => import('./pages/home/SignUpPage'));
 const ServicesPage = lazy(() => import('./pages/home/ServicesPage'));
 const AboutPage = lazy(() => import('./pages/home/AboutPage'));
@@ -64,6 +64,12 @@ const VirtualNumberSettings = lazy(() => import('./pages/admin/VirtualNumberSett
 
 
 
+const PageLoader = () => (
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
+    <div style={{ width: 40, height: 40, border: '4px solid #dcfce7', borderTopColor: '#16a34a', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+  </div>
+);
+
 const Layout = ({ children }) => {
   const location = useLocation();
   const showLayout = ["/", "/signup", "/services", "/about", "/terms", "/faq", "/contact"].includes(location.pathname);
@@ -91,7 +97,7 @@ const App = () => {
     <Router> 
       <Toaster position="top-right" reverseOrder={false} />
       <Layout>
-        <Suspense fallback={null}>
+        <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignUpPage />} />
