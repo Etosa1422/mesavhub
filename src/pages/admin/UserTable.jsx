@@ -65,12 +65,12 @@ const UserTable = ({
                           </span>
                           <span
                             className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold ${
-                              user.status === "active"
+                              user.status === "active" || user.status === 1
                                 ? "bg-emerald-100 text-emerald-800"
                                 : "bg-red-100 text-red-800"
                             }`}
                           >
-                            {user.status === "active" ? "Active" : "Banned"}
+                            {user.status === "active" || user.status === 1 ? "Active" : "Banned"}
                           </span>
                         </div>
                     
@@ -160,10 +160,10 @@ const UserTable = ({
                   <td className="px-4 py-4">
                     <span
                       className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
-                        user.status === "active" ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"
+                        user.status === "active" || user.status === 1 ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"
                       }`}
                     >
-                      {user.status === "active" ? "Active" : "Banned"}
+                      {user.status === "active" || user.status === 1 ? "Active" : "Banned"}
                     </span>
                   </td>
                
