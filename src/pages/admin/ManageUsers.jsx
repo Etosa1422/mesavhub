@@ -126,9 +126,9 @@ const ManageUsers = () => {
         if (statusFilter !== "All Status") {
           filteredData = filteredData.filter(user => {
             if (statusFilter === "Active") {
-              return user.status === "active" || user.status === 1
+              return String(user.status) === "1"
             } else if (statusFilter === "Banned") {
-              return user.status === "banned" || user.status === 0
+              return String(user.status) !== "1"
             }
             return true
           })

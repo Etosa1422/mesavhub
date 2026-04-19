@@ -25,7 +25,7 @@ const UserStats = ({ users = [], formatCurrency }) => {
           <div>
             <p className="text-xs sm:text-sm text-gray-500">Active Users</p>
             <p className="text-lg sm:text-xl font-bold text-gray-900">
-              {users.filter((u) => u.status === "active" || u.status === 1).length}
+              {users.filter((u) => String(u.status) === "1").length}
             </p>
           </div>
         </div>
@@ -39,7 +39,7 @@ const UserStats = ({ users = [], formatCurrency }) => {
           <div>
             <p className="text-xs sm:text-sm text-gray-500">Verified Users</p>
             <p className="text-lg sm:text-xl font-bold text-gray-900">
-              {users.filter((u) => u.email_verified || u.email_verified_at).length}
+              {users.filter((u) => u.email_verified_at != null).length}
             </p>
           </div>
         </div>
