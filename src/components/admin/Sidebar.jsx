@@ -26,6 +26,7 @@ const Sidebar = ({
 
   const sidebarItems = [
     { icon: BarChart3, label: 'Dashboard', to: '/admin/dashboard' },
+    { icon: Users, label: 'All Users', to: '/admin/manage-users' },
     { icon: Plus, label: 'Add Services', to: '/admin/add-services' },
     { icon: List, label: 'Show Services', to: '/admin/show-services' },
     { icon: Zap, label: 'Manage API Providers', to: '/admin/api-providers' },
@@ -35,8 +36,7 @@ const Sidebar = ({
     { icon: DollarSign, label: 'Transactions', to: '/admin/transactions' },
     { icon: ShoppingBag, label: 'Orders', to: '/admin/orders' },
     { icon: Ticket, label: 'Ticket', to: '/admin/tickets' },
-    { icon: Users, label: 'All Users', to: '/admin/manage-users' },
-     { icon: Bell, label: 'Updates', to: '/admin/updates' },
+    { icon: Bell, label: 'Updates', to: '/admin/updates' },
     { icon: Mail, label: 'Send Mail', to: '/admin/send-mail' },
     // { icon: Database, label: 'System Logs', to: '/admin/system-logs' }, 
     { icon: Settings, label: 'Settings', to: '/admin/settings' },
