@@ -89,7 +89,7 @@ const Navbar = () => {
             </Link>
           ))}
           <a
-            href="#login-section"
+            href="/login"
             onClick={handleSignInClick}
             className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white text-sm font-medium transition-colors duration-200 cursor-pointer"
           >
