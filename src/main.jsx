@@ -12,12 +12,3 @@ root.render(
     </ThemeProvider>
   </StrictMode>,
 );
-
-// Remove the HTML loader once React has painted
-requestAnimationFrame(() => {
-  const loader = document.getElementById('root-loader');
-  if (loader) {
-    loader.classList.add('hidden');
-    setTimeout(() => loader.remove(), 350);
-  }
-});

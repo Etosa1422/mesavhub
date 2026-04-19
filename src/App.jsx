@@ -68,6 +68,14 @@ const Layout = ({ children }) => {
   const location = useLocation();
   const showLayout = ["/", "/signup", "/services", "/about", "/terms", "/faq", "/contact"].includes(location.pathname);
 
+  useEffect(() => {
+    const loader = document.getElementById('root-loader');
+    if (loader) {
+      loader.classList.add('hidden');
+      setTimeout(() => loader.remove(), 350);
+    }
+  }, []);
+
   return (
     <>
       {showLayout && <Navbar />}
@@ -81,7 +89,22 @@ const Layout = ({ children }) => {
 const App = () => {
   useEffect(() => {
     getSiteSettings().then(settings => {
-      if (settings?.font_family) {
+      if (settings?.font_family && settings.font_family !== 'Fredoka') {
+        // Dynamically load the custom font only when it differs from default
+        const fontMap = {
+          'Poppins':     'Poppins:wght@400;500;600;700',
+          'Nunito Sans': 'Nunito+Sans:wght@400;600;700',
+          'Roboto Slab': 'Roboto+Slab:wght@400;700',
+          'Sahitya':     'Sahitya:wght@400;700',
+        };
+        const fontQuery = fontMap[settings.font_family];
+        if (fontQuery && !document.querySelector(`link[data-font="${settings.font_family}"]`)) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = `https://fonts.googleapis.com/css2?family=${fontQuery}&display=swap`;
+          link.setAttribute('data-font', settings.font_family);
+          document.head.appendChild(link);
+        }
         document.body.style.fontFamily = `'${settings.font_family}', sans-serif`;
       }
     }).catch(() => {});
