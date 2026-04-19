@@ -17,6 +17,8 @@ const TermsPage = lazy(() => import('./pages/home/TermsPage'));
 const FaqPage = lazy(() => import('./pages/home/FaqPage'));
 const ContactPage = lazy(() => import('./pages/home/ContactPage'));
 const LoginPage = lazy(() => import('./pages/home/LoginPage'));
+const ForgotPasswordPage = lazy(() => import('./pages/home/ForgotPasswordPage'));
+const ResetPasswordPage = lazy(() => import('./pages/home/ResetPasswordPage'));
 
 // Dashboard pages
 const DashboardLayout = lazy(() => import('./pages/dashboard/DashboardLayout'));
@@ -68,7 +70,7 @@ const VirtualNumberSettings = lazy(() => import('./pages/admin/VirtualNumberSett
 
 const Layout = ({ children }) => {
   const location = useLocation();
-const showLayout = ["/", "/login", "/signup", "/services", "/about", "/terms", "/faq", "/contact"].includes(location.pathname);
+const showLayout = ["/", "/login", "/signup", "/forgot-password", "/reset-password", "/services", "/about", "/terms", "/faq", "/contact"].includes(location.pathname);
 
   useEffect(() => {
     const loader = document.getElementById('root-loader');
@@ -120,6 +122,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/signup" element={<SignUpPage />} />
            <Route path="/services" element={<ServicesPage />} />
           <Route path="/about" element={<AboutPage />} />
