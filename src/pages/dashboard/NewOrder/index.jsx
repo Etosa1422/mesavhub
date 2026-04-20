@@ -369,13 +369,12 @@ const NewOrder = () => {
         orderId: orderId,
       })
 
-      // Update user balance in frontend state
-      if (newBalance !== undefined) {
-        setUser(prevUser => ({
-          ...prevUser,
-          balance: newBalance
-        }))
-      }
+      // Update user balance and order count in frontend state
+      setUser(prevUser => ({
+        ...prevUser,
+        ...(newBalance !== undefined ? { balance: newBalance } : {}),
+        total_orders: (prevUser?.total_orders || 0) + 1,
+      }))
 
       toast.success("Order submitted successfully!")
 
