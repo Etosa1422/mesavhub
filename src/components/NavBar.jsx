@@ -2,7 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Zap, Sun, Moon } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
 const navLinks = [
@@ -70,12 +70,7 @@ const Navbar = () => {
     >
       <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
-            <Zap className="w-4 h-4 text-white" />
-          </div>
-          <span className="text-xl font-black text-gray-900 dark:text-white tracking-tight">
-            Mesav<span className="text-brand-500 dark:text-brand-400">hub</span>
-          </span>
+          <img src="/logo.png" alt="Mesavhub" className="h-20 w-auto" />
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

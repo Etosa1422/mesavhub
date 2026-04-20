@@ -52,12 +52,12 @@ const Sidebar = ({
       <div className="flex flex-col h-full">
         {/* Header */}
         <div className="p-4 border-b border-gray-200 flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-green-700 rounded-xl flex items-center justify-center shadow-lg">
-            <Shield className="w-5 h-5 text-white" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold text-gray-800 text-lg">Admin Panel</span>
-            <span className="text-xs text-gray-500">Control Center</span>
+          <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="Mesavhub" className="h-20 w-auto" />
+            <div className="flex flex-col">
+              <span className="font-bold text-gray-800 text-lg">Admin Panel</span>
+              <span className="text-xs text-gray-500">Control Center</span>
+            </div>
           </div>
           <button 
             onClick={() => setSidebarOpen(false)} 

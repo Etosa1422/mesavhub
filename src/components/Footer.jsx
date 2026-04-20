@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Zap, Twitter, Instagram, Youtube } from "lucide-react";
+import { Twitter, Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,12 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
-                <Zap className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-xl font-black text-gray-900 dark:text-white tracking-tight">
-                Mesa<span className="text-brand-500 dark:text-brand-400">vs</span>
-              </span>
+              <img src="/logo.png" alt="Mesavhub" className="h-20 w-auto" />
             </Link>
             <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-sm">
               Your all-in-one platform for social media boosting and all-country number verification. Real results, instant delivery.

@@ -82,9 +82,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, user }) => {
           <div className="p-4 sm:p-5 lg:p-6 border-b border-white/5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                {/* Green glow dot */}
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_#4ade80]" />
-                <span className="font-bold text-white text-base sm:text-lg tracking-tight">mesavhub.com</span>
+                <img src="/logo.png" alt="Mesavhub" className="h-20 w-auto" />
               </div>
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
