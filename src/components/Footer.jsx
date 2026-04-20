@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <img src="/logo.png" alt="Mesavhub" className="h-20 w-auto" />
+              <img src="/logo.png" alt="Mesavhub" className="h-24 w-auto" />
             </Link>
             <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-sm">
               Your all-in-one platform for social media boosting and all-country number verification. Real results, instant delivery.

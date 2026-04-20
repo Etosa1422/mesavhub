@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
   const location = useLocation();
   const navigate = useNavigate();
   const { isDark, toggle } = useTheme();
@@ -25,22 +25,19 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
 
   useEffect(() => {
-    let timeoutId;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrolled(currentScrollY > 20);
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
         setShowNavbar(false);
       } else {
         setShowNavbar(true);
       }
-      setLastScrollY(currentScrollY);
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => setShowNavbar(true), 200);
+      lastScrollY.current = currentScrollY;
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const scrollToLogin = () => {
     const el = document.getElementById("login-section");
@@ -70,7 +67,7 @@ const Navbar = () => {
     >
       <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2 group">
-          <img src="/logo.png" alt="Mesavhub" className="h-20 w-auto" />
+          <img src="/logo.png" alt="Mesavhub" className="h-24 w-auto" />
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

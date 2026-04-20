@@ -53,7 +53,7 @@ const Sidebar = ({
         {/* Header */}
         <div className="p-4 border-b border-gray-200 flex items-center space-x-3">
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="Mesavhub" className="h-20 w-auto" />
+            <img src="/logo.png" alt="Mesavhub" className="h-24 w-auto" />
             <div className="flex flex-col">
               <span className="font-bold text-gray-800 text-lg">Admin Panel</span>
               <span className="text-xs text-gray-500">Control Center</span>

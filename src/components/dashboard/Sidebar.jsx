@@ -82,7 +82,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, user }) => {
           <div className="p-4 sm:p-5 lg:p-6 border-b border-white/5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <img src="/logo.png" alt="Mesavhub" className="h-20 w-auto" />
+                <img src="/logo.png" alt="Mesavhub" className="h-24 w-auto" />
               </div>
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
