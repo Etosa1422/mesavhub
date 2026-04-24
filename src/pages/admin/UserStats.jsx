@@ -2,7 +2,7 @@
 
 import { User, CheckCircle, Mail, DollarSign } from "lucide-react"
 
-const UserStats = ({ users = [], formatCurrency }) => {
+const UserStats = ({ users = [], formatCurrency, selectedCurrency, convertToSelectedCurrency }) => {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-4 sm:mt-6">
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3 sm:p-4">
@@ -53,7 +53,15 @@ const UserStats = ({ users = [], formatCurrency }) => {
           <div>
             <p className="text-xs sm:text-sm text-gray-500">Total Balance</p>
             <p className="text-sm sm:text-xl font-bold text-gray-900">
-              {formatCurrency(users.reduce((sum, u) => sum + (u.balance || 0), 0), { symbol: "₦" })}
+              {formatCurrency(
+                users.reduce((sum, u) => {
+                  const converted = convertToSelectedCurrency
+                    ? convertToSelectedCurrency(u.balance || 0, u.currency || "NGN")
+                    : (u.balance || 0)
+                  return sum + converted
+                }, 0),
+                selectedCurrency || { symbol: "₦" }
+              )}
             </p>
           </div>
         </div>

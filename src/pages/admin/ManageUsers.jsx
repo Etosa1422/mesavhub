@@ -591,7 +591,7 @@ const ManageUsers = () => {
         />
 
         {/* Stats Summary */}
-        <UserStats users={users.data || []} formatCurrency={formatCurrency} />
+        <UserStats users={users.data || []} formatCurrency={formatCurrency} selectedCurrency={selectedCurrency} convertToSelectedCurrency={convertToSelectedCurrency} />
 
         {/* Pagination */}
         {pagination.last_page > 1 && (
