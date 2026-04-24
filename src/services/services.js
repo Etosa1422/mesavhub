@@ -284,15 +284,15 @@ export const replyToTicket = async (id, message) => {
 
 export const fetchOrderHistory = async (params = {}) => {
   try {
-    // Construct query parameters
     const queryParams = new URLSearchParams();
-    
-    // Add optional parameters if they exist
-    if (params.status) queryParams.append('status', params.status);
-    if (params.search) queryParams.append('search', params.search);
-    if (params.page) queryParams.append('page', params.page);
-    if (params.per_page) queryParams.append('per_page', params.per_page);
-    
+
+    if (params.status)     queryParams.append('status', params.status);
+    if (params.search)     queryParams.append('search', params.search);
+    if (params.page)       queryParams.append('page', params.page);
+    if (params.per_page)   queryParams.append('per_page', params.per_page);
+    if (params.sort_by)    queryParams.append('sort_by', params.sort_by);
+    if (params.sort_order) queryParams.append('sort_order', params.sort_order);
+
     const response = await api.get(`/orders/history?${queryParams.toString()}`);
     return response.data;
   } catch (error) {

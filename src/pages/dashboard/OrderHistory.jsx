@@ -458,8 +458,13 @@ const OrderHistory = () => {
                     </div>
                     <div className="text-right">
                       <div className="text-xs text-gray-500 mb-1">Status</div>
-                      <div>
+                      <div className="flex flex-col items-end gap-1">
                         {mobileColumns.find(c => c.key === "status")?.render(order)}
+                        {order.status?.toLowerCase() === 'cancelled' && hasValue(order.price) && (
+                          <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+                            Refunded
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -837,10 +842,15 @@ const OrderHistory = () => {
                     <div className="col-span-1 text-gray-700 font-medium">
                       {hasValue(order.quantity) ? order.quantity : "—"}
                     </div>
-                    <div className="col-span-1">
+                    <div className="col-span-1 flex flex-col gap-1">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
                         {order.status || "—"}
                       </span>
+                      {order.status?.toLowerCase() === 'cancelled' && hasValue(order.price) && (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+                          Refunded
+                        </span>
+                      )}
                     </div>
                     <div className="col-span-1 flex items-center space-x-2 justify-end">
                       {hasValue(order.link) && (
