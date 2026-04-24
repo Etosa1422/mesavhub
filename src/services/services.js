@@ -113,7 +113,7 @@ export const createOrder = async (orderData) => {
       }
       
       if (serverError.shortfall) {
-        errorMessage += ` You need $${serverError.shortfall} more.`;
+        errorMessage = appendShortfallMessage(errorMessage, serverError.shortfall);
       }
     } else if (error.request) {
       errorMessage = 'Network error. Please check your internet connection.';
@@ -127,6 +127,21 @@ export const createOrder = async (orderData) => {
     
     throw enhancedError;
   }
+};
+
+const appendShortfallMessage = (message, shortfall) => {
+  if (!shortfall) {
+    return message;
+  }
+
+  const normalizedMessage = message.toLowerCase();
+  const shortfallText = `${shortfall}`.toLowerCase();
+
+  if (normalizedMessage.includes(shortfallText) || normalizedMessage.includes('you need') || normalizedMessage.includes('shortfall')) {
+    return message;
+  }
+
+  return `${message} Shortfall: ${shortfall}.`;
 }
 
 // Mass Order - Create multiple orders at once
@@ -166,7 +181,7 @@ export const createMassOrder = async (ordersArray) => {
       }
       
       if (serverError.shortfall) {
-        errorMessage += ` Insufficient balance. You need $${serverError.shortfall} more.`;
+        errorMessage = appendShortfallMessage(errorMessage, serverError.shortfall);
       }
     } else if (error.request) {
       errorMessage = 'Network error. Please check your internet connection.';
@@ -180,7 +195,7 @@ export const createMassOrder = async (ordersArray) => {
     
     throw enhancedError;
   }
-}
+};
 
 // Fallback: Create orders individually if mass endpoint is not available
 const createOrdersIndividually = async (ordersArray) => {

@@ -89,6 +89,15 @@ const BoostFollowers = () => {
     : 0
   const formattedTotalCost = formatCurrency(totalCost, selectedCurrency)
 
+  const formatDisplayAmount = (amount) => {
+    if (amount === null || amount === undefined || amount === "") {
+      return formatCurrency(0, selectedCurrency)
+    }
+
+    const convertedAmount = convertToSelectedCurrency(Number(amount), "NGN")
+    return formatCurrency(convertedAmount, selectedCurrency)
+  }
+
   const getPlatformIcon = (categoryTitle, serviceTitle = null) => {
     const titleToCheck = serviceTitle || categoryTitle || ""
     if (!titleToCheck) return <Globe className="w-5 h-5 text-gray-500 flex-shrink-0" />
@@ -273,7 +282,7 @@ const BoostFollowers = () => {
         if (serverError.message) {
           errorMessage = serverError.message
           if (serverError.message.includes("Insufficient balance") && serverError.shortfall) {
-            errorMessage += ` You need $${serverError.shortfall} more.`
+            errorMessage += ` You need ${formatDisplayAmount(serverError.shortfall)} more.`
             showDetailedError = true
           }
           if (serverError.message.includes("active order with this link")) errorMessage = "❌ " + serverError.message
@@ -295,6 +304,9 @@ const BoostFollowers = () => {
           requiredAmount: error.response?.data?.required_amount,
           currentBalance: error.response?.data?.current_balance,
           shortfall: error.response?.data?.shortfall,
+          requiredAmountText: formatDisplayAmount(error.response?.data?.required_amount),
+          currentBalanceText: formatDisplayAmount(error.response?.data?.current_balance),
+          shortfallText: formatDisplayAmount(error.response?.data?.shortfall),
         } : null,
       })
       if (errorMessage.includes("❌")) toast.error(errorMessage.replace("❌ ", ""), { duration: 6000, icon: "⚠️" })

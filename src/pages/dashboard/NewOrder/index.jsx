@@ -94,6 +94,15 @@ const NewOrder = () => {
 
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
+  const formatDisplayAmount = (amount) => {
+    if (amount === null || amount === undefined || amount === "") {
+      return formatCurrency(0, selectedCurrency)
+    }
+
+    const convertedAmount = convertToSelectedCurrency(Number(amount), "NGN")
+    return formatCurrency(convertedAmount, selectedCurrency)
+  }
+
   // Calculate converted amounts
   const convertedBalance = user?.balance ? convertToSelectedCurrency(user.balance, "NGN") : 0;
   const formattedBalance = formatCurrency(convertedBalance, selectedCurrency);
@@ -397,8 +406,14 @@ const NewOrder = () => {
           errorMessage = serverError.message
 
           // Show detailed information for specific errors
-          if (serverError.message.includes('Insufficient balance') && serverError.shortfall) {
-            errorMessage += ` You need $${serverError.shortfall} more.`
+          if (
+            serverError.message.includes('Insufficient balance') &&
+            serverError.shortfall &&
+            !serverError.message.toLowerCase().includes('you need')
+          ) {
+            errorMessage += ` You need ${formatDisplayAmount(serverError.shortfall)} more.`
+            showDetailedError = true
+          } else if (serverError.message.includes('Insufficient balance') && serverError.shortfall) {
             showDetailedError = true
           }
 
@@ -436,7 +451,10 @@ const NewOrder = () => {
         details: showDetailedError ? {
           requiredAmount: error.response?.data?.required_amount,
           currentBalance: error.response?.data?.current_balance,
-          shortfall: error.response?.data?.shortfall
+          shortfall: error.response?.data?.shortfall,
+          requiredAmountText: formatDisplayAmount(error.response?.data?.required_amount),
+          currentBalanceText: formatDisplayAmount(error.response?.data?.current_balance),
+          shortfallText: formatDisplayAmount(error.response?.data?.shortfall)
         } : null
       })
 

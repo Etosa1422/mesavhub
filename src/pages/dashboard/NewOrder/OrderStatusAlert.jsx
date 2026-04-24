@@ -30,9 +30,9 @@ const OrderStatusAlert = ({ orderStatus, setOrderStatus }) => {
             <div className="mt-2 p-2 bg-red-50 rounded border border-red-200">
               <p className="text-xs font-medium text-red-700">Balance Details:</p>
               <div className="text-xs text-red-600 mt-1 space-y-1">
-                <p>Required: ${orderStatus.details.requiredAmount}</p>
-                <p>Current: ${orderStatus.details.currentBalance}</p>
-                <p className="font-semibold">Shortfall: ${orderStatus.details.shortfall}</p>
+                <p>Required: {orderStatus.details.requiredAmountText || orderStatus.details.requiredAmount}</p>
+                <p>Current: {orderStatus.details.currentBalanceText || orderStatus.details.currentBalance}</p>
+                <p className="font-semibold">Shortfall: {orderStatus.details.shortfallText || orderStatus.details.shortfall}</p>
               </div>
             </div>
           )}
