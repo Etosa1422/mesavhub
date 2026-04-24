@@ -21,6 +21,7 @@ const statusTabs = [
   { id: "all", label: "All", color: null },
   { id: "pending", label: "Pending", color: "#3b82f6" },
   { id: "processing", label: "Processing", color: "#f59e0b" },
+  { id: "in-progress", label: "In Progress", color: "#06b6d4" },
   { id: "completed", label: "Completed", color: "#10b981" },
   { id: "partial", label: "Partial", color: "#8b5cf6" },
   { id: "cancelled", label: "Cancelled", color: "#ef4444" },
@@ -35,6 +36,8 @@ const getStatusColor = (status) => {
       return "bg-yellow-100 text-yellow-800"
     case "processing":
       return `${THEME_COLORS.primary?.[100] ?? "bg-green-100"} ${THEME_COLORS.text?.primary700 ?? "text-green-700"}`
+    case "in-progress":
+      return "bg-cyan-100 text-cyan-800"
     case "partial":
       return "bg-green-100 text-green-800"
     case "cancelled":
