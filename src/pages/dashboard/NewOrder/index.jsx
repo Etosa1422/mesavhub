@@ -407,15 +407,7 @@ const NewOrder = () => {
           errorMessage = serverError.message
           isInsufficientBalanceError = serverError.message.includes('Insufficient balance')
 
-          // Show detailed information for specific errors
-          if (
-            isInsufficientBalanceError &&
-            serverError.shortfall &&
-            !serverError.message.toLowerCase().includes('you need')
-          ) {
-            errorMessage += ` You need ${formatDisplayAmount(serverError.shortfall)} more.`
-            showDetailedError = true
-          } else if (isInsufficientBalanceError && serverError.shortfall) {
+          if (isInsufficientBalanceError && serverError.shortfall) {
             showDetailedError = true
           }
 

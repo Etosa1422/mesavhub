@@ -112,15 +112,13 @@ export const createOrder = async (orderData) => {
         errorMessage += `\n\nDebug: ${serverError.debug.error} at ${serverError.debug.file}:${serverError.debug.line}`;
       }
       
-      if (serverError.shortfall) {
-        errorMessage = appendShortfallMessage(errorMessage, serverError.shortfall);
-      }
     } else if (error.request) {
       errorMessage = 'Network error. Please check your internet connection.';
     }
     
     const enhancedError = new Error(errorMessage);
     enhancedError.originalError = error;
+    enhancedError.response = error.response;
     enhancedError.responseData = error.response?.data;
     enhancedError.isNetworkError = !error.response;
     enhancedError.isTimeout = error.code === 'ECONNABORTED';
@@ -128,21 +126,6 @@ export const createOrder = async (orderData) => {
     throw enhancedError;
   }
 };
-
-const appendShortfallMessage = (message, shortfall) => {
-  if (!shortfall) {
-    return message;
-  }
-
-  const normalizedMessage = message.toLowerCase();
-  const shortfallText = `${shortfall}`.toLowerCase();
-
-  if (normalizedMessage.includes(shortfallText) || normalizedMessage.includes('you need') || normalizedMessage.includes('shortfall')) {
-    return message;
-  }
-
-  return `${message} Shortfall: ${shortfall}.`;
-}
 
 // Mass Order - Create multiple orders at once
 export const createMassOrder = async (ordersArray) => {
@@ -180,15 +163,13 @@ export const createMassOrder = async (ordersArray) => {
         errorMessage += ` ${serverError.failed_orders.length} order(s) failed.`;
       }
       
-      if (serverError.shortfall) {
-        errorMessage = appendShortfallMessage(errorMessage, serverError.shortfall);
-      }
     } else if (error.request) {
       errorMessage = 'Network error. Please check your internet connection.';
     }
     
     const enhancedError = new Error(errorMessage);
     enhancedError.originalError = error;
+    enhancedError.response = error.response;
     enhancedError.responseData = error.response?.data;
     enhancedError.isNetworkError = !error.response;
     enhancedError.isTimeout = error.code === 'ECONNABORTED';

@@ -277,14 +277,18 @@ const BoostFollowers = () => {
     } catch (error) {
       let errorMessage = "Failed to submit order"
       let showDetailedError = false
+      let isInsufficientBalanceError = false
+
       if (error.response?.data) {
         const serverError = error.response.data
         if (serverError.message) {
           errorMessage = serverError.message
-          if (serverError.message.includes("Insufficient balance") && serverError.shortfall) {
-            errorMessage += ` You need ${formatDisplayAmount(serverError.shortfall)} more.`
+          isInsufficientBalanceError = serverError.message.includes('Insufficient balance')
+
+          if (isInsufficientBalanceError && serverError.shortfall) {
             showDetailedError = true
           }
+
           if (serverError.message.includes("active order with this link")) errorMessage = "❌ " + serverError.message
           if (serverError.message.includes("Service not found") || serverError.message.includes("currently unavailable"))
             errorMessage = "⚠️ " + serverError.message
@@ -297,18 +301,24 @@ const BoostFollowers = () => {
         else if (error.isTimeout) errorMessage = "⏰ Request timeout. Please try again."
         else errorMessage = error.message
       }
-      setOrderStatus({
-        success: false,
-        message: errorMessage,
-        details: showDetailedError ? {
-          requiredAmount: error.response?.data?.required_amount,
-          currentBalance: error.response?.data?.current_balance,
-          shortfall: error.response?.data?.shortfall,
-          requiredAmountText: formatDisplayAmount(error.response?.data?.required_amount),
-          currentBalanceText: formatDisplayAmount(error.response?.data?.current_balance),
-          shortfallText: formatDisplayAmount(error.response?.data?.shortfall),
-        } : null,
-      })
+
+      if (!isInsufficientBalanceError) {
+        setOrderStatus({
+          success: false,
+          message: errorMessage,
+          details: showDetailedError ? {
+            requiredAmount: error.response?.data?.required_amount,
+            currentBalance: error.response?.data?.current_balance,
+            shortfall: error.response?.data?.shortfall,
+            requiredAmountText: formatDisplayAmount(error.response?.data?.required_amount),
+            currentBalanceText: formatDisplayAmount(error.response?.data?.current_balance),
+            shortfallText: formatDisplayAmount(error.response?.data?.shortfall),
+          } : null,
+        })
+      }
+
+      if (isInsufficientBalanceError) return
+
       if (errorMessage.includes("❌")) toast.error(errorMessage.replace("❌ ", ""), { duration: 6000, icon: "⚠️" })
       else if (errorMessage.includes("⚠️")) toast.error(errorMessage.replace("⚠️ ", ""), { duration: 5000 })
       else if (errorMessage.includes("🔧")) toast.error(errorMessage.replace("🔧 ", ""), { duration: 5000, icon: "🔧" })
