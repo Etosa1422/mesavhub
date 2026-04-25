@@ -540,8 +540,8 @@ const AddFunds = () => {
                     </>
                   )}
 
-                  {/* Flutterwave Pay Button */}
-                  {selectedMethod === 'flutterwave' && (
+                  {/* Pay Button (automated gateways) */}
+                  {(selectedMethod === 'flutterwave' || selectedMethod === 'kora') && (
                   <button
                     onClick={handlePayment}
                     disabled={!amount || Number(amount) < currentMethod?.minAmount || isLoading}
@@ -942,8 +942,8 @@ const AddFunds = () => {
                       </>
                     )}
 
-                    {/* Flutterwave Pay Button */}
-                    {selectedMethod === 'flutterwave' && (
+                    {/* Pay Button (automated gateways) */}
+                    {(selectedMethod === 'flutterwave' || selectedMethod === 'kora') && (
                     <button
                       onClick={handlePayment}
                       disabled={!amount || Number(amount) < currentMethod?.minAmount || isLoading}
