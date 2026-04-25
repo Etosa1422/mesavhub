@@ -11,7 +11,7 @@ const PaymentCallback = () => {
   const [status, setStatus] = useState('loading')
   const [message, setMessage] = useState('Verifying your payment...')
   const [debugInfo, setDebugInfo] = useState('')
-  const searchParams = useSearchParams()
+  const [searchParams] = useSearchParams()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -19,29 +19,35 @@ const PaymentCallback = () => {
       try {
         const transactionId = searchParams.get('transaction_id')
         const txRef = searchParams.get('tx_ref')
+        // Korapay sends back `reference` as the param name
+        const koraRef = searchParams.get('reference')
         const statusParam = searchParams.get('status')
 
-        console.log('?? Payment Callback - URL Parameters:', {
+        console.log('Payment Callback - URL Parameters:', {
           transactionId,
-          txRef, 
+          txRef,
+          koraRef,
           statusParam,
           allParams: Object.fromEntries(searchParams.entries())
         })
 
-        setDebugInfo(`Transaction ID: ${transactionId}, TX_REF: ${txRef}, Status: ${statusParam}`)
+        setDebugInfo(`Transaction ID: ${transactionId}, TX_REF: ${txRef}, Reference: ${koraRef}, Status: ${statusParam}`)
 
-        if (!transactionId && !txRef) {
+        if (!transactionId && !txRef && !koraRef) {
           throw new Error('No transaction reference found in URL parameters')
         }
 
-        // Use either transaction_id or tx_ref
-        const reference = transactionId || txRef
+        // Prefer Flutterwave's transaction_id, then tx_ref, then Korapay reference
+        const reference = transactionId || txRef || koraRef
 
-        console.log('?? Verifying payment with reference:', reference)
+        console.log('Verifying payment with reference:', reference)
+
+        // Normalise status: Korapay uses 'success', Flutterwave uses 'successful'
+        const normalizedStatus = statusParam === 'success' ? 'success' : (statusParam || 'successful')
 
         const response = await verifyPayment({
           transaction_id: reference,
-          status: statusParam || 'successful' // Default to successful if no status
+          status: normalizedStatus,
         })
 
         console.log('? Verification response:', response)

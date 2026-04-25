@@ -1,7 +1,7 @@
 ﻿"use client"
 
 import { useState, useEffect } from "react"
-import { CreditCard, ChevronDown, Plus, History, Clock, Loader2, Smartphone, CheckCircle2, Copy, MessageCircle, Bitcoin } from "lucide-react"
+import { CreditCard, ChevronDown, Plus, History, Clock, Loader2, Smartphone, CheckCircle2, Copy, MessageCircle, Bitcoin, Zap } from "lucide-react"
 import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 import { fetchUserData, initiatePayment, paymentHistory } from "../../services/userService"
@@ -38,6 +38,7 @@ const AddFunds = () => {
   })
   const [enabledMethods, setEnabledMethods] = useState({
     flutterwave: true,
+    kora: true,
     opay: true,
     korrapay: true,
     crypto: true,
@@ -51,6 +52,14 @@ const AddFunds = () => {
       icon: <CreditCard className="w-5 h-5" style={{ color: CSS_COLORS.primary }} />,
       minAmount: 100,
       supportedCurrencies: ["NGN", "USD", "GHS", "KES"],
+    },
+    {
+      id: "kora",
+      name: "Korapay",
+      description: "Pay securely via card or bank transfer. Instant credit. Min ₦100.",
+      icon: <Zap className="w-5 h-5 text-violet-500" />,
+      minAmount: 100,
+      supportedCurrencies: ["NGN"],
     },
     {
       id: "opay",
@@ -142,6 +151,7 @@ const AddFunds = () => {
         })
         setEnabledMethods({
           flutterwave: (siteSettings?.payment_flutterwave_enabled ?? "1") === "1",
+          kora: (siteSettings?.payment_kora_enabled ?? "1") === "1",
           opay: (siteSettings?.payment_opay_enabled ?? "1") === "1",
           korrapay: (siteSettings?.payment_korrapay_enabled ?? "1") === "1",
           crypto: (siteSettings?.payment_crypto_enabled ?? "1") === "1",
