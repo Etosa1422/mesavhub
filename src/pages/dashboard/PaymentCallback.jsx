@@ -37,13 +37,17 @@ const PaymentCallback = () => {
           status: normalizedStatus,
         })
 
-        if (response.success) {
+        const transactionStatus = response.data?.status
+
+        if (response.success && transactionStatus === 'completed') {
           setStatus('success')
           setMessage('Payment completed successfully!')
           toast.success('Payment completed successfully!')
           setTimeout(() => {
             navigate('/dashboard/add-funds')
           }, 3000)
+        } else if (response.success && (transactionStatus === 'failed' || transactionStatus === 'pending')) {
+          throw new Error('Payment was not completed. Please try again.')
         } else {
           throw new Error(response.message || 'Payment verification failed')
         }
