@@ -79,8 +79,8 @@ export const setCustomRateForUser = async (userId, service, rate, type) => {
 
 
 
-export const fetchUsers = async () => {
-  const response = await api.get(`/admin/users`);
+export const fetchUsers = async (params = {}) => {
+  const response = await api.get(`/admin/users`, { params });
   return response.data;
 };
 

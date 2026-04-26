@@ -100,46 +100,23 @@ const ManageUsers = () => {
   const loadUsers = async () => {
     setIsLoading(true)
     try {
-      // Use AbortController for request cancellation
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+      const params = {
+        page: pagination.current_page,
+        per_page: pagination.per_page,
+      }
+      if (searchTerm) params.search = searchTerm
+      if (statusFilter !== "All Status") params.status = statusFilter.toLowerCase()
 
-      const response = await fetchUsers()
-      
-      clearTimeout(timeoutId)
+      const response = await fetchUsers(params)
       
       // Handle both paginated and non-paginated responses
       if (response?.data) {
-        // Apply client-side filtering for search and status if backend doesn't support it
-        let filteredData = response.data
-        
-        if (searchTerm) {
-          const searchLower = searchTerm.toLowerCase()
-          filteredData = filteredData.filter(user => 
-            (user.first_name || user.firstname || "").toLowerCase().includes(searchLower) ||
-            (user.last_name || user.lastname || "").toLowerCase().includes(searchLower) ||
-            (user.username || "").toLowerCase().includes(searchLower) ||
-            (user.email || "").toLowerCase().includes(searchLower)
-          )
-        }
-        
-        if (statusFilter !== "All Status") {
-          filteredData = filteredData.filter(user => {
-            if (statusFilter === "Active") {
-              return String(user.status) === "1"
-            } else if (statusFilter === "Banned") {
-              return String(user.status) !== "1"
-            }
-            return true
-          })
-        }
-        
-        setUsers({ data: filteredData })
+        setUsers({ data: response.data })
         setPagination(prev => ({
           ...prev,
           current_page: response.current_page || 1,
           last_page: response.last_page || 1,
-          total: filteredData.length,
+          total: response.total || response.data.length,
         }))
       } else if (Array.isArray(response)) {
         setUsers({ data: response })
@@ -333,12 +310,12 @@ const ManageUsers = () => {
           )
           toast.success(`Balance ${data.action === "add" ? "added" : "subtracted"} successfully!`)
           await loadUsers()
-          // Refresh selected user if it's the one being adjusted
+          // Refresh selected user from the reloaded list
           if (selectedUser?.id === data.userId) {
-            const updatedUser = await fetchUsers().then(res => 
-              res.data?.find(u => u.id === data.userId) || res.data?.data?.find(u => u.id === data.userId)
-            )
-            if (updatedUser) setSelectedUser(updatedUser)
+            setSelectedUser(prev => {
+              const updated = users.data?.find(u => u.id === data.userId)
+              return updated || prev
+            })
           }
         } catch (error) {
           const errorMsg = error?.response?.data?.message || "Failed to adjust balance"
