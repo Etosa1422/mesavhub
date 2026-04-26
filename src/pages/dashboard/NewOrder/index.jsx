@@ -94,15 +94,6 @@ const NewOrder = () => {
 
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
-  const formatDisplayAmount = (amount) => {
-    if (amount === null || amount === undefined || amount === "") {
-      return formatCurrency(0, selectedCurrency)
-    }
-
-    const convertedAmount = convertToSelectedCurrency(Number(amount), "NGN")
-    return formatCurrency(convertedAmount, selectedCurrency)
-  }
-
   // Calculate converted amounts
   const convertedBalance = user?.balance ? convertToSelectedCurrency(user.balance, "NGN") : 0;
   const formattedBalance = formatCurrency(convertedBalance, selectedCurrency);
@@ -396,7 +387,6 @@ const NewOrder = () => {
 
       let errorMessage = "Failed to submit order"
       let showDetailedError = false
-      let isInsufficientBalanceError = false
 
       // Enhanced error handling for different error types
       if (error.response?.data) {
@@ -405,9 +395,10 @@ const NewOrder = () => {
         // Handle specific error messages from backend
         if (serverError.message) {
           errorMessage = serverError.message
-          isInsufficientBalanceError = serverError.message.includes('Insufficient balance')
 
-          if (isInsufficientBalanceError && serverError.shortfall) {
+          // Show detailed information for specific errors
+          if (serverError.message.includes('Insufficient balance') && serverError.shortfall) {
+            errorMessage += ` You need $${serverError.shortfall} more.`
             showDetailedError = true
           }
 
@@ -439,26 +430,17 @@ const NewOrder = () => {
         }
       }
 
-      if (!isInsufficientBalanceError) {
-        setOrderStatus({
-          success: false,
-          message: errorMessage,
-          details: showDetailedError ? {
-            requiredAmount: error.response?.data?.required_amount,
-            currentBalance: error.response?.data?.current_balance,
-            shortfall: error.response?.data?.shortfall,
-            requiredAmountText: formatDisplayAmount(error.response?.data?.required_amount),
-            currentBalanceText: formatDisplayAmount(error.response?.data?.current_balance),
-            shortfallText: formatDisplayAmount(error.response?.data?.shortfall)
-          } : null
-        })
-      }
+      setOrderStatus({
+        success: false,
+        message: errorMessage,
+        details: showDetailedError ? {
+          requiredAmount: error.response?.data?.required_amount,
+          currentBalance: error.response?.data?.current_balance,
+          shortfall: error.response?.data?.shortfall
+        } : null
+      })
 
       // Show appropriate toast based on error type
-      if (isInsufficientBalanceError) {
-        return
-      }
-
       if (errorMessage.includes('❌')) {
         toast.error(errorMessage.replace('❌ ', ''), {
           duration: 6000,
