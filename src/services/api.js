@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+let isRedirecting = false;
+
 const api = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
+  timeout: 15000,
   headers: {
     "Content-Type": "application/json",
     "Accept": "application/json"
@@ -42,11 +45,12 @@ api.interceptors.response.use(
       // Check if we're in admin area - only redirect admin requests to admin login
       const isInAdminArea = currentPath.startsWith('/admin/');
       
-      if (!isOnLoginPage) {
+      if (!isOnLoginPage && !isRedirecting) {
         if (isAdminRequest || isInAdminArea) {
           // Admin request or in admin area - redirect to admin login
           // Only clear admin tokens if it was an admin request
           if (isAdminRequest) {
+            isRedirecting = true;
             localStorage.removeItem('adminToken');
             localStorage.removeItem('adminData');
             window.location.href = '/admin/login';
@@ -55,6 +59,7 @@ api.interceptors.response.use(
           // don't redirect - might be a public endpoint
         } else {
           // User request - redirect to home
+          isRedirecting = true;
           localStorage.removeItem('authToken');
           localStorage.removeItem('userData');
           window.location.href = '/';

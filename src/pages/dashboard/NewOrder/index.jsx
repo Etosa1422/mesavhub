@@ -560,43 +560,50 @@ const NewOrder = () => {
 
   // Load essential services when categories are loaded
   useEffect(() => {
+    let cancelled = false
+
     const loadAllServices = async () => {
       if (categories.length > 0 && allServices.length === 0 && !isLoadingAllServices) {
         setIsLoadingAllServices(true)
         try {
-          const essentialServices = []
-
-          // Load services for first 5 categories for better search coverage
+          // Load services for first 5 categories in parallel
           const categoriesToLoad = categories.slice(0, 5)
 
-          for (const category of categoriesToLoad) {
-            try {
-              const response = await fetchSmmServices(category.id.toString())
-              const servicesData = response.data.data
+          const results = await Promise.allSettled(
+            categoriesToLoad.map(category =>
+              fetchSmmServices(category.id.toString()).then(response => ({
+                category,
+                servicesData: response.data.data,
+              }))
+            )
+          )
 
-              // Add category information to each service
+          if (cancelled) return
+
+          const essentialServices = []
+          results.forEach(result => {
+            if (result.status === 'fulfilled') {
+              const { category, servicesData } = result.value
               const servicesWithCategory = servicesData.map(service => ({
                 ...service,
                 categoryName: category.category_title,
                 categoryId: category.id,
               }))
-
               essentialServices.push(...servicesWithCategory)
-            } catch (err) {
-              console.error(`Error fetching services for category ${category.id}:`, err)
             }
-          }
+          })
 
           setAllServices(essentialServices)
         } catch (err) {
-          console.error("Error loading essential services:", err)
+          if (!cancelled) console.error("Error loading essential services:", err)
         } finally {
-          setIsLoadingAllServices(false)
+          if (!cancelled) setIsLoadingAllServices(false)
         }
       }
     }
 
     loadAllServices()
+    return () => { cancelled = true }
   }, [categories])
 
   const getServiceMetrics = () => {

@@ -161,7 +161,7 @@ const OrderHistory = () => {
     observer.observe(sentinelRef.current)
     return () => observer.disconnect()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pagination.currentPage, pagination.lastPage, loading, isFetchingMore, orders])
+  }, [pagination.currentPage, pagination.lastPage, loading, isFetchingMore])
 
   const buildRequestPayload = (page = 1) => {
     return {

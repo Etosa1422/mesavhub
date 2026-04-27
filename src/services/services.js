@@ -50,24 +50,36 @@ export const searchServicesFast = async (searchQuery, limit = 20) => {
   }
 }
 
-// Debounced search function
-let searchTimeout;
-export const debouncedSearch = (searchQuery, callback, delay = 300) => {
-  clearTimeout(searchTimeout);
-  searchTimeout = setTimeout(async () => {
-    if (searchQuery && searchQuery.trim().length >= 2) {
-      try {
-        const response = await searchServicesFast(searchQuery);
-        callback(response.data.data || []);
-      } catch (error) {
-        console.error('Search error:', error);
+// Debounced search function factory — returns a cancel function.
+// Each caller should keep the returned cancel ref to avoid cross-component interference.
+export const createDebouncedSearch = (delay = 300) => {
+  let timer;
+  const search = (searchQuery, callback) => {
+    clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (searchQuery && searchQuery.trim().length >= 2) {
+        try {
+          const response = await searchServicesFast(searchQuery);
+          callback(response.data.data || []);
+        } catch (error) {
+          console.error('Search error:', error);
+          callback([]);
+        }
+      } else {
         callback([]);
       }
-    } else {
-      callback([]);
-    }
-  }, delay);
+    }, delay);
+  };
+  search.cancel = () => clearTimeout(timer);
+  return search;
 };
+
+// Legacy export — kept for backward compatibility but delegates to the factory.
+// WARNING: this shares a single timer across all callers; prefer createDebouncedSearch.
+export const debouncedSearch = (() => {
+  const instance = createDebouncedSearch(300);
+  return (searchQuery, callback, delay = 300) => instance(searchQuery, callback);
+})();
 
 // Clear cache function
 export const clearServicesCache = () => {

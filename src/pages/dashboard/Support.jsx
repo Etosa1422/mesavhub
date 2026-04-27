@@ -231,7 +231,7 @@ const Support = () => {
           >
             <h1 className="text-2xl font-bold text-gray-800 mb-2">Ticket Support</h1>
             <p className="text-gray-600 text-sm">
-              At Boostelix, we understand what works and what doesn't in digital marketing. Our team is here to help
+              At Mesavhub, we understand what works and what doesn't in digital marketing. Our team is here to help
               with any issue you may have.
             </p>
           </div>
@@ -437,7 +437,7 @@ const Support = () => {
           >
             <h1 className="text-3xl font-bold text-gray-800 mb-3">Ticket Support</h1>
             <p className="text-gray-600">
-              At Boostelix, we understand what works and what doesn't in digital marketing. Our team is here to help
+              At Mesavhub, we understand what works and what doesn't in digital marketing. Our team is here to help
               with any issue you may have.
             </p>
           </div>
@@ -721,7 +721,7 @@ const Support = () => {
             className="text-center py-6 rounded-2xl text-white"
             style={{ background: `linear-gradient(135deg, ${CSS_COLORS.primary}, ${CSS_COLORS.primaryDark})` }}
           >
-            © Copyright 2025 All Rights Reserved.
+            ï¿½ Copyright 2025 All Rights Reserved.
           </div>
         </div>
       </div>

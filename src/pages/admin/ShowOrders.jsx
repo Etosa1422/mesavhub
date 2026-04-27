@@ -124,7 +124,10 @@ const ShowOrders = () => {
   }
 
   useEffect(() => {
-    loadOrders(1)
+    const timer = setTimeout(() => {
+      loadOrders(1)
+    }, 500)
+    return () => clearTimeout(timer)
   }, [searchTerm, statusFilter])
 
   const handleDelete = async (id) => {

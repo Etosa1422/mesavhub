@@ -142,11 +142,6 @@ const ManageTransactions = () => {
     return () => clearTimeout(timer)
   }, [error, success])
 
-  // Initial load
-  useEffect(() => {
-    loadTransactions()
-  }, [])
-
   const [formData, setFormData] = useState({
     amount: 0,
     charge: 0,

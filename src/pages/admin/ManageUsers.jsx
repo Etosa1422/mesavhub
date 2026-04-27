@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Search, UserPlus, Menu, X, RefreshCw, Download, Filter } from "lucide-react"
 import UserDetailsCard from "./UserDetailsCard"
 import UserForm from "./UserForm"
@@ -42,6 +42,7 @@ const ManageUsers = () => {
     per_page: 15,
     total: 0,
   })
+  const isInitialMount = useRef(true)
 
   // Get currency context from AdminLayout
   const context = useOutletContext()
@@ -92,8 +93,12 @@ const ManageUsers = () => {
     return () => clearTimeout(timer)
   }, [searchTerm, statusFilter])
 
-  // Fetch users on component mount and when pagination changes
+  // Fetch users when pagination changes (skip initial mount — handled by the debounced effect above)
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
     loadUsers()
   }, [pagination.current_page])
 
