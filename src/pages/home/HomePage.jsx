@@ -1,32 +1,59 @@
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
+// Above-fold: eager imports — rendered immediately on first paint
 import LoginSection from "./LoginSection";
 import StatsDashboard from "../sections/Statistics";
-import Why from "../sections/why";
-import HomeFeatures from "../sections/features";
-import RiseSocial from "../sections/Ready";
-import SmmServicesInsight from "../sections/ServicesInsight";
-import PaymentSection from "../sections/PaymentSection";
-import BoostSection from "../sections/BoostSection";
-import HowItWorks from "../sections/how";
-import FaqSection from "../sections/Faq";
-import TestimonialsSection from "../sections/CustomerStories";
-import GetStarted from "../sections/Getstarted";
+
+// Below-fold: code-split — each is its own chunk fetched only when needed
+const Why               = lazy(() => import('../sections/why'));
+const HomeFeatures      = lazy(() => import('../sections/features'));
+const SmmServicesInsight = lazy(() => import('../sections/ServicesInsight'));
+const RiseSocial        = lazy(() => import('../sections/Ready'));
+const BoostSection      = lazy(() => import('../sections/BoostSection'));
+const PaymentSection    = lazy(() => import('../sections/PaymentSection'));
+const HowItWorks        = lazy(() => import('../sections/how'));
+const FaqSection        = lazy(() => import('../sections/Faq'));
+const TestimonialsSection = lazy(() => import('../sections/CustomerStories'));
+const GetStarted        = lazy(() => import('../sections/Getstarted'));
+
+/**
+ * Renders children only once the placeholder div enters the viewport
+ * (with a 400px lookahead so content is ready before the user reaches it).
+ * Uses a min-height placeholder to preserve scroll rhythm.
+ */
+function ViewportSection({ children, minHeight = "120px" }) {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={!visible ? { minHeight } : undefined}>
+      {visible && <Suspense fallback={null}>{children}</Suspense>}
+    </div>
+  );
+}
 
 const badges = ["Instagram", "TikTok", "WhatsApp", "YouTube", "Telegram", "Twitter"];
 
 const HomePage = () => {
-  // Render hero + login + stats immediately for fast first paint.
-  // Everything below the fold is deferred to after the first browser paint.
-  const [belowFoldReady, setBelowFoldReady] = useState(false);
-  useEffect(() => {
-    const id = setTimeout(() => setBelowFoldReady(true), 0);
-    return () => clearTimeout(id);
-  }, []);
-
   return (
     <div className="bg-white dark:bg-[#0a0a0f] text-gray-900 dark:text-white">
-      {/* HERO */}
+      {/* HERO — fully inline, zero deps, paints instantly */}
       <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white dark:from-[#0a0a0f] dark:via-[#0a0a0f] dark:to-[#0a0a0f]">
         {/* Grid background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(124,58,237,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(124,58,237,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
@@ -77,21 +104,21 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Above-fold sections — eager, no lazy wrapper */}
       <LoginSection />
       <StatsDashboard />
 
-      {belowFoldReady && <>
-        <Why />
-        <HomeFeatures />
-        <SmmServicesInsight />
-        <RiseSocial />
-        <BoostSection />
-        <PaymentSection />
-        <HowItWorks />
-        <FaqSection />
-        <TestimonialsSection />
-        <GetStarted />
-      </>}
+      {/* Below-fold sections — each fetched on demand as the user scrolls */}
+      <ViewportSection><Why /></ViewportSection>
+      <ViewportSection><HomeFeatures /></ViewportSection>
+      <ViewportSection><SmmServicesInsight /></ViewportSection>
+      <ViewportSection><RiseSocial /></ViewportSection>
+      <ViewportSection><BoostSection /></ViewportSection>
+      <ViewportSection><PaymentSection /></ViewportSection>
+      <ViewportSection><HowItWorks /></ViewportSection>
+      <ViewportSection><FaqSection /></ViewportSection>
+      <ViewportSection><TestimonialsSection /></ViewportSection>
+      <ViewportSection><GetStarted /></ViewportSection>
     </div>
   );
 };

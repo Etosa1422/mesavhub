@@ -8,8 +8,11 @@ import WhatsAppButton from './components/WhatsAppButton';
 import ProtectedRoute from './routes/ProtectedRoute';
 import AdminRoutes from './routes/AdminRoutes';
 
+// HomePage is NOT lazy — it is the landing page and must render with zero waterfall.
+// Its internal sections are individually lazy-loaded via IntersectionObserver.
+import HomePage from './pages/home/HomePage';
+
 // Public pages
-const HomePage = lazy(() => import('./pages/home/HomePage'));
 const SignUpPage = lazy(() => import('./pages/home/SignUpPage'));
 const ServicesPage = lazy(() => import('./pages/home/ServicesPage'));
 const AboutPage = lazy(() => import('./pages/home/AboutPage'));
