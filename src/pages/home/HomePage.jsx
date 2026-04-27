@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoginSection from "./LoginSection";
 import StatsDashboard from "../sections/Statistics";
@@ -15,6 +16,14 @@ import GetStarted from "../sections/Getstarted";
 const badges = ["Instagram", "TikTok", "WhatsApp", "YouTube", "Telegram", "Twitter"];
 
 const HomePage = () => {
+  // Render hero + login + stats immediately for fast first paint.
+  // Everything below the fold is deferred to after the first browser paint.
+  const [belowFoldReady, setBelowFoldReady] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => setBelowFoldReady(true), 0);
+    return () => clearTimeout(id);
+  }, []);
+
   return (
     <div className="bg-white dark:bg-[#0a0a0f] text-gray-900 dark:text-white">
       {/* HERO */}
@@ -70,16 +79,19 @@ const HomePage = () => {
 
       <LoginSection />
       <StatsDashboard />
-      <Why />
-      <HomeFeatures />
-      <SmmServicesInsight />
-      <RiseSocial />
-      <BoostSection />
-      <PaymentSection />
-      <HowItWorks />
-      <FaqSection />
-      <TestimonialsSection />
-      <GetStarted />
+
+      {belowFoldReady && <>
+        <Why />
+        <HomeFeatures />
+        <SmmServicesInsight />
+        <RiseSocial />
+        <BoostSection />
+        <PaymentSection />
+        <HowItWorks />
+        <FaqSection />
+        <TestimonialsSection />
+        <GetStarted />
+      </>}
     </div>
   );
 };

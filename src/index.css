@@ -33,6 +33,19 @@ body{
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-x 35s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
 .dark body {
   background-color: #0a0a0f;
 }
