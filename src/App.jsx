@@ -76,7 +76,7 @@ const Layout = ({ children }) => {
     const loader = document.getElementById('root-loader');
     if (loader) {
       loader.classList.add('hidden');
-      setTimeout(() => loader.remove(), 350);
+      setTimeout(() => loader.remove(), 500);
     }
   }, []);
 
