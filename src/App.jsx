@@ -68,9 +68,15 @@ const VirtualNumberSettings = lazy(() => import('./pages/admin/VirtualNumberSett
 
 
 
+const PageLoader = () => (
+  <div className="min-h-[60vh] flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-brand-600 border-t-transparent rounded-full animate-spin" />
+  </div>
+);
+
 const Layout = ({ children }) => {
   const location = useLocation();
-const showLayout = ["/", "/login", "/signup", "/forgot-password", "/reset-password", "/services", "/about", "/terms", "/faq", "/contact"].includes(location.pathname);
+  const showLayout = ["/", "/login", "/signup", "/forgot-password", "/reset-password", "/services", "/about", "/terms", "/faq", "/contact"].includes(location.pathname);
 
   useEffect(() => {
     const loader = document.getElementById('root-loader');
@@ -83,7 +89,9 @@ const showLayout = ["/", "/login", "/signup", "/forgot-password", "/reset-passwo
   return (
     <>
       {showLayout && <Navbar />}
-      {children}
+      <Suspense fallback={<PageLoader />}>
+        {children}
+      </Suspense>
       {showLayout && <Footer />}
     </>
   );
@@ -117,7 +125,6 @@ const App = () => {
   return (
     <Router> 
       <Toaster position="top-right" reverseOrder={false} />
-      <Suspense fallback={null}>
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -190,7 +197,6 @@ const App = () => {
         
         </Routes>
       </Layout>
-      </Suspense>
       <WhatsAppButton />
     </Router>
   );
