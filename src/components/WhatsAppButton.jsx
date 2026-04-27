@@ -28,7 +28,7 @@ const WhatsAppButton = () => {
       style={{
         position: "fixed",
         bottom: "24px",
-        right: "24px",
+        left: "24px",
         zIndex: 1000,
         display: "flex",
         alignItems: "center",
@@ -73,7 +73,7 @@ const WhatsAppButton = () => {
         <span
           style={{
             position: "absolute",
-            right: "64px",
+            left: "64px",
             bottom: "50%",
             transform: "translateY(50%)",
             backgroundColor: "#111827",
