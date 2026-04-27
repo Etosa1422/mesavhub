@@ -59,6 +59,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, user }) => {
           fixed inset-y-0 left-0 z-40 w-64 sm:w-72 lg:w-64
           transform transition-transform duration-300 ease-in-out
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+          ${!sidebarOpen ? "pointer-events-none lg:pointer-events-auto" : ""}
           overflow-y-auto text-white
         `}
         style={{
