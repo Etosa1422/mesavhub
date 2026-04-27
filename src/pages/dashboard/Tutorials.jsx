@@ -147,7 +147,7 @@ function Tutorials() {
         </div>
         {/* Copyright Footer */}
         <div className="text-center py-6">
-          <p className="text-sm text-gray-500">© Copyright 2025 All Rights Reserved.</p>
+          <p className="text-sm text-gray-500">© Copyright 2026 All Rights Reserved.</p>
         </div>
       </div>
     </div>

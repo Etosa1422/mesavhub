@@ -1,8 +1,8 @@
 const cards = [
   { num: "01", title: "Lightning Fast Delivery", desc: "Orders start processing within seconds of placement. We run one of the fastest fulfillment networks on the market." },
-  { num: "02", title: "All-Country Verification", desc: "Get virtual SMS numbers from 150+ countries instantly. Verify any platform — WhatsApp, Telegram, Instagram and more." },
+  { num: "02", title: "All-Country Verification", desc: "Get virtual SMS numbers from 150+ countries instantly. Verify any platform  WhatsApp, Telegram, Instagram and more." },
   { num: "03", title: "Reseller-Ready API", desc: "Full API access lets you automate orders, build your own panel, and scale your reselling business without limits." },
-  { num: "04", title: "Transparent Pricing", desc: "No hidden fees. No surprises. The price you see is the price you pay — with bulk discounts available for power users." },
+  { num: "04", title: "Transparent Pricing", desc: "No hidden fees. No surprises. The price you see is the price you pay with bulk discounts available for power users." },
 ];
 
 const Why = () => (
@@ -14,7 +14,7 @@ const Why = () => (
           Everything you need.<br />Nothing you don&apos;t.
         </h2>
         <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed mb-4">
-          We built Mesavhub around one idea: give creators and marketers a reliable, affordable tool that just works — every single time.
+          We built Mesavhub around one idea: give creators and marketers a reliable, affordable tool that just works  every single time.
         </p>
         <p className="text-gray-500 dark:text-gray-400 text-base leading-relaxed">
           From first-time buyers to high-volume resellers, our platform scales with you. No bloat. No guesswork.

@@ -721,7 +721,7 @@ const Support = () => {
             className="text-center py-6 rounded-2xl text-white"
             style={{ background: `linear-gradient(135deg, ${CSS_COLORS.primary}, ${CSS_COLORS.primaryDark})` }}
           >
-            � Copyright 2025 All Rights Reserved.
+             Copyright 2026 All Rights Reserved.
           </div>
         </div>
       </div>

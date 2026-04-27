@@ -679,7 +679,7 @@ const NewOrder = () => {
             <div className="flex-1 min-w-0">
               <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-brand-400 bg-brand-500/20 px-2 py-0.5 rounded-full mb-1.5">✦ New</span>
               <h3 className="text-white font-bold text-base">Virtual SMS Numbers</h3>
-              <p className="text-gray-400 text-xs mt-0.5">150+ countries � Instant OTPs</p>
+              <p className="text-gray-400 text-xs mt-0.5">150+ countries  Instant OTPs</p>
             </div>
             <div className="flex flex-col items-center gap-2 ml-4 flex-shrink-0">
               <span className="text-3xl">📱</span>
