@@ -307,11 +307,11 @@ const ActionDropdown = ({ order, isOpen, onToggle, onEdit, onDelete, onChangeSta
 }
 
 const OrderStats = ({ orders = [], formatCurrency }) => {
-  const totalCharge = orders.reduce((sum, order) => sum + (order.charge || 0), 0)
+  const totalCharge = orders.reduce((sum, order) => sum + parseFloat(order.charge || 0), 0)
   const completedOrdersCount = orders.filter(
     (order) => normalizeStatus(order.status) === ORDER_STATUSES.COMPLETED,
   ).length
-  const totalQuantity = orders.reduce((sum, order) => sum + (order.quantity || 0), 0)
+  const totalQuantity = orders.reduce((sum, order) => sum + parseInt(order.quantity || 0, 10), 0)
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -706,7 +706,7 @@ export default function ManageUserOrders() {
       style: "currency",
       currency: "USD",
       minimumFractionDigits: 2,
-    }).format(amount)
+    }).format(parseFloat(amount) || 0)
 
   const formatDate = (dateString) => {
     if (!dateString) return "N/A"
