@@ -66,6 +66,7 @@ const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
 const BulkPriceIncrease = lazy(() => import('./pages/admin/BulkPriceIncrease'));
 const VirtualNumberPricing = lazy(() => import('./pages/admin/VirtualNumberPricing'));
 const VirtualNumberSettings = lazy(() => import('./pages/admin/VirtualNumberSettings'));
+const AdminAnnouncements = lazy(() => import('./pages/admin/Announcements'));
 
 
 
@@ -190,6 +191,7 @@ const App = () => {
             <Route path="bulk-price-increase" element={<BulkPriceIncrease />} />
             <Route path="virtual-number-pricing" element={<VirtualNumberPricing />} />
             <Route path="vn-settings" element={<VirtualNumberSettings />} />
+            <Route path="announcements" element={<AdminAnnouncements />} />
           </Route>
         
         </Routes>

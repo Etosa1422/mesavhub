@@ -344,6 +344,28 @@ export const updateOrderStatus = async (id, statusData) => {
 };
 
 
+// Announcements
+export const fetchAnnouncements = async () => {
+  const response = await api.get('/admin/announcements');
+  return response.data;
+};
+
+export const createAnnouncement = async (data) => {
+  const response = await api.post('/admin/announcements', data);
+  return response.data;
+};
+
+export const updateAnnouncement = async (id, data) => {
+  const response = await api.patch(`/admin/announcements/${id}`, data);
+  return response.data;
+};
+
+export const deleteAnnouncement = async (id) => {
+  const response = await api.delete(`/admin/announcements/${id}`);
+  return response.data;
+};
+
+
 
 
 // Transactions

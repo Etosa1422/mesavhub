@@ -4,6 +4,15 @@ export const fetchUserData = async () => {
      return response;
 }
 
+export const fetchActiveAnnouncements = async () => {
+  try {
+    const response = await api.get('/announcements/active');
+    return response.data?.data || [];
+  } catch {
+    return [];
+  }
+};
+
 
 export const fetchAllUpdates = async () => {
     try {

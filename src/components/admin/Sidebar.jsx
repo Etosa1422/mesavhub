@@ -16,7 +16,8 @@ import {
   X,
   Shield,
   Phone,
-  Key
+  Key,
+  Megaphone
 } from 'lucide-react';
 
 const Sidebar = ({
@@ -37,6 +38,7 @@ const Sidebar = ({
     { icon: ShoppingBag, label: 'Orders', to: '/admin/orders' },
     { icon: Ticket, label: 'Ticket', to: '/admin/tickets' },
     { icon: Bell, label: 'Updates', to: '/admin/updates' },
+    { icon: Megaphone, label: 'Announcements', to: '/admin/announcements' },
     { icon: Mail, label: 'Send Mail', to: '/admin/send-mail' },
     // { icon: Database, label: 'System Logs', to: '/admin/system-logs' }, 
     { icon: Settings, label: 'Settings', to: '/admin/settings' },
