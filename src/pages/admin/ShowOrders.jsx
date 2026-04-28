@@ -64,7 +64,7 @@ const ShowOrders = () => {
 
   const formatPrice = (amount) => {
     if (!selectedCurrency || amount === null || amount === undefined) return '—'
-    const convertedAmount = convertToSelectedCurrency(amount, "NGN")
+    const convertedAmount = convertToSelectedCurrency(parseFloat(amount) || 0, "NGN")
     return formatCurrency(convertedAmount, selectedCurrency)
   }
 

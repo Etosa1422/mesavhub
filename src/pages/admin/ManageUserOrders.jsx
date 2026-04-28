@@ -307,7 +307,7 @@ const ActionDropdown = ({ order, isOpen, onToggle, onEdit, onDelete, onChangeSta
 }
 
 const OrderStats = ({ orders = [], formatCurrency }) => {
-  const totalCharge = orders.reduce((sum, order) => sum + parseFloat(order.charge || 0), 0)
+  const totalCharge = orders.reduce((sum, order) => sum + parseFloat(order.price || order.charge || 0), 0)
   const completedOrdersCount = orders.filter(
     (order) => normalizeStatus(order.status) === ORDER_STATUSES.COMPLETED,
   ).length
@@ -414,7 +414,7 @@ const OrderTable = ({
                           </span>
                         </p>
                         <div className="flex items-center gap-2 mb-2">
-                          <span className="text-sm font-bold text-gray-900">{formatCurrency(order.charge)}</span>
+                          <span className="text-sm font-bold text-gray-900">{formatCurrency(order.price ?? order.charge)}</span>
                           <span className="text-xs text-gray-500"> Qty: {order.quantity} </span>
                         </div>
                         <p className="text-xs text-gray-600 mb-2">{formatDate(order.created_at)}</p>
@@ -477,7 +477,7 @@ const OrderTable = ({
                       {order.status}
                     </span>
                   </td>
-                  <td className="px-4 py-4 text-sm text-gray-500">{formatCurrency(order.charge)}</td>
+                  <td className="px-4 py-4 text-sm text-gray-500">{formatCurrency(order.price ?? order.charge)}</td>
                   <td className="px-4 py-4 text-sm text-gray-500">{order.quantity}</td>
                   <td className="px-4 py-4 text-sm text-green-600">
                     <a href={order.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
@@ -543,9 +543,9 @@ function EditOrderModal({ order, onClose, onSave, isSaving }) {
             </Label>
             <Input
               id="charge"
-              name="charge"
+              name="price"
               type="number"
-              value={editedOrder?.charge || 0}
+              value={editedOrder?.price ?? editedOrder?.charge ?? 0}
               onChange={handleChange}
               className="col-span-3"
             />
