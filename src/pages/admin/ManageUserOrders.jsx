@@ -701,12 +701,12 @@ export default function ManageUserOrders() {
     if (userId) fetchData()
   }, [userId])
 
-  const formatCurrency = (amount) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 2,
-    }).format(parseFloat(amount) || 0)
+  const formatCurrency = (amount) => {
+    const currency = user?.currency || "NGN"
+    const symbols = { NGN: "₦", USD: "$", GBP: "£", EUR: "€" }
+    const symbol = symbols[currency] || currency + " "
+    return `${symbol}${(parseFloat(amount) || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+  }
 
   const formatDate = (dateString) => {
     if (!dateString) return "N/A"
