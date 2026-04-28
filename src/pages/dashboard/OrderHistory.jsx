@@ -26,6 +26,7 @@ const statusTabs = [
   { id: "partial", label: "Partial", color: "#8b5cf6" },
   { id: "cancelled", label: "Cancelled", color: "#ef4444" },
   { id: "failed", label: "Failed", color: "#dc2626" },
+  { id: "refunded", label: "Refunded", color: "#6b7280" },
 ]
 
 const getStatusColor = (status) => {
@@ -44,6 +45,8 @@ const getStatusColor = (status) => {
       return "bg-red-100 text-red-800"
     case "failed":
       return "bg-red-100 text-red-800"
+    case "refunded":
+      return "bg-gray-100 text-gray-800"
     default:
       return "bg-gray-100 text-gray-800"
   }
@@ -463,7 +466,7 @@ const OrderHistory = () => {
                       <div className="text-xs text-gray-500 mb-1">Status</div>
                       <div className="flex flex-col items-end gap-1">
                         {mobileColumns.find(c => c.key === "status")?.render(order)}
-                        {order.status?.toLowerCase() === 'cancelled' && hasValue(order.price) && (
+                        {order.status?.toLowerCase() === 'refunded' && (
                           <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                             Refunded
                           </span>
@@ -849,7 +852,7 @@ const OrderHistory = () => {
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
                         {order.status || "—"}
                       </span>
-                      {order.status?.toLowerCase() === 'cancelled' && hasValue(order.price) && (
+                      {order.status?.toLowerCase() === 'refunded' && (
                         <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                           Refunded
                         </span>
