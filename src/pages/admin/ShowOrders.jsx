@@ -156,12 +156,13 @@ const ShowOrders = () => {
     }
   }
 
-  const handleStatusUpdate = async (status, statusDescription, reason) => {
+  const handleStatusUpdate = async (status, statusDescription, reason, refund) => {
     try {
       await updateOrderStatus(editingOrder.id, {
         status,
         statusDescription,
-        reason
+        reason,
+        refund: refund ?? false,
       })
       toast.success("Order status updated successfully")
       setEditingOrder(null)
@@ -685,6 +686,8 @@ const ShowOrders = () => {
 }
 
 // Edit Order Modal Component
+const REFUND_STATUSES = ["cancelled", "failed"]
+
 const EditOrderModal = ({ order, onClose, onSave, onStatusUpdate, formatPrice, hasValue, getStatusColor, statusOptions }) => {
   const [formData, setFormData] = useState({
     status: order.status || "",
@@ -697,10 +700,16 @@ const EditOrderModal = ({ order, onClose, onSave, onStatusUpdate, formatPrice, h
     start_counter: order.start_counter || "",
     remains: order.remains || "",
   })
+  const [refundUser, setRefundUser] = useState(
+    REFUND_STATUSES.includes((order.status || "").toLowerCase())
+  )
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
+    if (name === "status") {
+      setRefundUser(REFUND_STATUSES.includes(value.toLowerCase()))
+    }
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -721,7 +730,7 @@ const EditOrderModal = ({ order, onClose, onSave, onStatusUpdate, formatPrice, h
     e.preventDefault()
     setIsSubmitting(true)
     try {
-      await onStatusUpdate(formData.status, formData.status_description, formData.reason)
+      await onStatusUpdate(formData.status, formData.status_description, formData.reason, refundUser)
     } finally {
       setIsSubmitting(false)
     }
@@ -779,6 +788,20 @@ const EditOrderModal = ({ order, onClose, onSave, onStatusUpdate, formatPrice, h
                   placeholder="Optional reason"
                 />
               </div>
+              {REFUND_STATUSES.includes(formData.status.toLowerCase()) && (
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="refund_user"
+                    checked={refundUser}
+                    onChange={(e) => setRefundUser(e.target.checked)}
+                    className="w-4 h-4 accent-green-600 cursor-pointer"
+                  />
+                  <label htmlFor="refund_user" className="text-sm font-medium text-gray-700 cursor-pointer">
+                    Refund order amount to user balance
+                  </label>
+                </div>
+              )}
               <button
                 type="button"
                 onClick={handleStatusSubmit}
