@@ -1,5 +1,5 @@
 ﻿"use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import toast from "react-hot-toast"
 import {
   Instagram,
@@ -88,6 +88,11 @@ const NewOrder = () => {
   const [showSearchResults, setShowSearchResults] = useState(false)
   const [isLoadingAllServices, setIsLoadingAllServices] = useState(false)
   const [searchResults, setSearchResults] = useState([])
+
+  // Idempotency key: generated fresh for each new order attempt.
+  // On network/timeout failure it is kept so a retry uses the same key
+  // and the backend won't double-charge.
+  const idempotencyKeyRef = useRef(null)
   const [isSearching, setIsSearching] = useState(false)
 
   const navigate = useNavigate()
@@ -345,6 +350,13 @@ const NewOrder = () => {
     setIsSubmitting(true)
     setOrderStatus(null)
 
+    // Generate a new key only if we don't already have one from a failed
+    // network/timeout attempt (so retries are idempotent).
+    if (!idempotencyKeyRef.current) {
+      idempotencyKeyRef.current = crypto.randomUUID()
+    }
+    const idempotencyKey = idempotencyKeyRef.current
+
     try {
       const orderData = {
         category: selectedCategory.id,
@@ -354,7 +366,7 @@ const NewOrder = () => {
         check: true,
       }
 
-      const response = await createOrder(orderData)
+      const response = await createOrder(orderData, idempotencyKey)
 
       const orderId = response.order_id || response.data?.order_id
       const newBalance = response.balance
@@ -378,6 +390,9 @@ const NewOrder = () => {
 
       toast.success("Order submitted successfully!")
 
+      // Success: clear the key so the next order gets a fresh one
+      idempotencyKeyRef.current = null
+
       // Reset form
       setQuantity("")
       setLink("")
@@ -387,6 +402,29 @@ const NewOrder = () => {
 
       let errorMessage = "Failed to submit order"
       let showDetailedError = false
+
+      // --- Ambiguous network / timeout errors ---
+      // If no server response came back, the request may have already reached the
+      // backend (and been forwarded to the provider) before the connection dropped.
+      // Keep the idempotency key so a retry won't double-charge.
+      if (error.isNetworkError || error.isTimeout) {
+        // idempotencyKeyRef.current is intentionally NOT cleared here so a
+        // manual retry re-uses the same key and the backend deduplicates it.
+        setOrderStatus({
+          type: 'pending',
+          success: false,
+          message:
+            error.isTimeout
+              ? "The request timed out before a response was received. Your order may have already been submitted to the provider. Please check your Order History before placing this order again to avoid duplicates."
+              : "A network error occurred and the order status is unknown. Your order may have already been submitted to the provider. Please check your Order History before placing this order again to avoid duplicates.",
+        })
+        toast("Order status unknown — check Order History", {
+          icon: '⚠️',
+          duration: 8000,
+          style: { background: '#fef3c7', color: '#92400e' },
+        })
+        return
+      }
 
       // Enhanced error handling for different error types
       if (error.response?.data) {
@@ -420,15 +458,13 @@ const NewOrder = () => {
           }
         }
       } else if (error.message) {
-        // Handle frontend/network errors
-        if (error.message.includes('Network Error') || error.isNetworkError) {
-          errorMessage = "🌐 Network error. Please check your internet connection and try again."
-        } else if (error.isTimeout) {
-          errorMessage = "⏰ Request timeout. Please try again."
-        } else {
-          errorMessage = error.message
-        }
+        // Handle other frontend errors
+        errorMessage = error.message
       }
+
+      // Definitive server error — the backend rejected the order, so clear the
+      // idempotency key so a corrected retry is treated as a new order.
+      idempotencyKeyRef.current = null
 
       setOrderStatus({
         success: false,
@@ -454,16 +490,6 @@ const NewOrder = () => {
         toast.error(errorMessage.replace('🔧 ', ''), {
           duration: 5000,
           icon: '🔧'
-        })
-      } else if (errorMessage.includes('🌐')) {
-        toast.error(errorMessage, {
-          duration: 4000,
-          icon: '🌐'
-        })
-      } else if (errorMessage.includes('⏰')) {
-        toast.error(errorMessage, {
-          duration: 4000,
-          icon: '⏰'
         })
       } else {
         toast.error(errorMessage)

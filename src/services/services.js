@@ -95,12 +95,13 @@ export const clearServicesCache = () => {
   });
 };
 
-export const createOrder = async (orderData) => {
+export const createOrder = async (orderData, idempotencyKey = null) => {
   try {
+    const headers = { 'Content-Type': 'application/json' };
+    if (idempotencyKey) headers['X-Idempotency-Key'] = idempotencyKey;
+
     const response = await api.post('/orders', orderData, {
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers,
       timeout: 30000
     });
     return response.data;
