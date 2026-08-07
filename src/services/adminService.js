@@ -55,6 +55,11 @@ export const syncApiProviderServices = async (id) => {
   return response.data;
 };
 
+export const syncApiProviderPrices = async (id) => {
+  const response = await api.post(`/admin/providers/${id}/sync-prices`);
+  return response.data;
+};
+
 
 export const sendEmailToUser = async (userId, subject, message) => {
   const response = await api.post(`/admin/users/${userId}/send-email`, {

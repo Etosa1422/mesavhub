@@ -34,6 +34,7 @@ import {
   deleteApiProvider,
   toggleApiProviderStatus,
   syncApiProviderServices,
+  syncApiProviderPrices,
 } from "../../services/adminService"
 import toast from "react-hot-toast"
 
@@ -360,6 +361,24 @@ const ManageApiProviders = () => {
     }
   }
 
+  const handleSyncPrices = async (id) => {
+    try {
+      setIsLoading(true)
+      const result = await syncApiProviderPrices(id)
+      setError(null)
+      const msg = result?.message || 'Prices synced successfully!'
+      setSuccess(msg)
+      toast.success(msg)
+    } catch (err) {
+      const errorMsg = err.message || err?.response?.data?.message || "Failed to sync prices"
+      setError(errorMsg)
+      setSuccess(null)
+      toast.error(errorMsg)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const ActionDropdown = ({ provider, isOpen, onToggle }) => (
     <div className="relative">
       <button
@@ -422,6 +441,18 @@ const ManageApiProviders = () => {
             >
               <RefreshCw className="w-4 h-4 text-orange-600" />
               <span>Sync</span>
+            </button>
+
+            <button
+              onClick={() => {
+                handleSyncPrices(provider.id)
+                setActiveDropdown(null)
+              }}
+              className="px-3 py-2 hover:bg-gray-50 flex flex-col items-center gap-1 text-sm font-medium text-gray-700 transition-colors duration-200 rounded-lg"
+              style={{ minWidth: '100px' }}
+            >
+              <DollarSign className="w-4 h-4 text-blue-600" />
+              <span>Sync Prices</span>
             </button>
 
             <div className="border-l border-gray-100 mx-1"></div>
